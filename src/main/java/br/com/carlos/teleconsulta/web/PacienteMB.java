@@ -25,7 +25,6 @@ public class PacienteMB implements Serializable {
     private List<Paciente> pacientes;
     private Paciente atual;
 
-    // filtros
     private String termo;
     private LocalDate nascIni;
     private LocalDate nascFim;

@@ -3,9 +3,15 @@ package br.com.carlos.teleconsulta.service;
 import br.com.carlos.teleconsulta.domain.Paciente;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.*;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaQuery;
+import jakarta.persistence.criteria.Predicate;
+import jakarta.persistence.criteria.Root;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @Stateless
 public class PacienteService {
@@ -23,43 +29,38 @@ public class PacienteService {
     }
 
     public List<Paciente> buscar(String termo, LocalDate nascIni, LocalDate nascFim) {
-        StringBuilder jpql = new StringBuilder("select p from Paciente p where 1=1");
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Paciente> cq = cb.createQuery(Paciente.class);
+        Root<Paciente> root = cq.from(Paciente.class);
 
-        boolean hasTermo = termo != null && !termo.isBlank();
-        if (hasTermo) {
-            jpql.append("""
-                and (
-                       lower(p.nome) like :kw
-                    or lower(p.nomeSocial) like :kw
-                    or lower(p.email) like :kw
-                    or lower(p.rg) like :kw
-                    or p.cpf like :kwNum
-                    or p.cns like :kwNum
-                    or p.telefone like :kwNum
-                )
-            """);
+        List<Predicate> ands = new ArrayList<>();
+
+        if (termo != null) {
+            String t = termo.trim().toLowerCase(Locale.ROOT);
+            if (!t.isEmpty()) {
+                String like = "%" + t + "%";
+                Predicate porNome       = cb.like(cb.lower(root.get("nome")), like);
+                Predicate porNomeSocial = cb.like(cb.lower(root.get("nomeSocial")), like);
+                Predicate porEmail      = cb.like(cb.lower(root.get("email")), like);
+                ands.add(cb.or(porNome, porNomeSocial, porEmail));
+            }
         }
-        if (nascIni != null) jpql.append(" and p.dataNascimento >= :nascIni");
-        if (nascFim != null) jpql.append(" and p.dataNascimento <= :nascFim");
 
-        jpql.append(" order by p.id desc");
-
-        TypedQuery<Paciente> q = em.createQuery(jpql.toString(), Paciente.class);
-
-        if (hasTermo) {
-            String kw = "%" + termo.toLowerCase().trim() + "%";
-            String kwNum = "%" + termo.replaceAll("\\D", "") + "%";
-            q.setParameter("kw", kw);
-            q.setParameter("kwNum", kwNum);
+        if (nascIni != null) {
+            ands.add(cb.greaterThanOrEqualTo(root.get("dataNascimento"), nascIni));
         }
-        if (nascIni != null) q.setParameter("nascIni", nascIni);
-        if (nascFim != null) q.setParameter("nascFim", nascFim);
+        if (nascFim != null) {
+            ands.add(cb.lessThanOrEqualTo(root.get("dataNascimento"), nascFim));
+        }
 
-        return q.getResultList();
+        cq.select(root)
+                .where(ands.toArray(new Predicate[0]))
+                .orderBy(cb.desc(root.get("id")));
+
+        return em.createQuery(cq).getResultList();
     }
 
     public Paciente salvar(Paciente p) {
-        // checa duplicidade de documentos (apenas se informados)
         if (p.getCpf() != null && !p.getCpf().isBlank() && cpfExiste(p.getCpf(), p.getId())) {
             throw new IllegalArgumentException("CPF já cadastrado.");
         }
