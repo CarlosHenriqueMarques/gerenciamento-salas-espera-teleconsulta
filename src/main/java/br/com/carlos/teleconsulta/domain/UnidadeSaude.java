@@ -32,12 +32,10 @@ public class UnidadeSaude implements Serializable {
     @Column(nullable = false, length = 20)
     private String sigla;
 
-    // CNPJ com 14 dígitos (somente números)
     @NotBlank @Size(min = 14, max = 14)
     @Column(nullable = false, length = 14)
     private String cnpj;
 
-    // CNES geralmente 7 dígitos
     @NotBlank @Size(min = 7, max = 7)
     @Column(nullable = false, length = 7)
     private String cnes;
@@ -52,7 +50,6 @@ public class UnidadeSaude implements Serializable {
         }
     }
 
-    // getters/setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

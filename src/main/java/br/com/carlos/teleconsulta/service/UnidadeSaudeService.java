@@ -63,8 +63,6 @@ public class UnidadeSaudeService {
         return qtd != null && qtd > 0L;
     }
 
-
-    // Filtro por nome/razão/sigla (case-insensitive)
     public List<UnidadeSaude> buscarPorFiltro(String filtro) {
         if (filtro == null || filtro.trim().isEmpty()) {
             return listarTodos();

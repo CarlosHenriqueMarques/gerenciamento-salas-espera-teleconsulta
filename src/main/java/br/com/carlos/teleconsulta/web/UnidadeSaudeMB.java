@@ -23,7 +23,7 @@ public class UnidadeSaudeMB implements Serializable {
     private List<UnidadeSaude> unidades;
     private UnidadeSaude atual = new UnidadeSaude();
 
-    private String filtro; // nome/razão/sigla
+    private String filtro;
 
     @PostConstruct
     public void init() {
@@ -49,7 +49,6 @@ public class UnidadeSaudeMB implements Serializable {
 
     public void salvar() {
         try {
-            // checagens únicas
             if (service.cnpjExiste(atual.getCnpj(), atual.getId())) {
                 addMsg(FacesMessage.SEVERITY_ERROR, "CNPJ já cadastrado.");
                 return;
@@ -60,7 +59,7 @@ public class UnidadeSaudeMB implements Serializable {
             }
 
             service.salvar(atual);
-            filtrar(); // mantém o contexto do filtro após salvar
+            filtrar();
             addMsg(FacesMessage.SEVERITY_INFO, "Unidade salva com sucesso.");
         } catch (Exception e) {
             addMsg(FacesMessage.SEVERITY_ERROR, "Erro ao salvar: " + e.getMessage());
@@ -89,8 +88,6 @@ public class UnidadeSaudeMB implements Serializable {
     private void addMsg(FacesMessage.Severity s, String m) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(s, m, null));
     }
-
-    // getters/setters
     public List<UnidadeSaude> getUnidades() { return unidades; }
     public UnidadeSaude getAtual() { return atual; }
     public void setAtual(UnidadeSaude atual) { this.atual = atual; }

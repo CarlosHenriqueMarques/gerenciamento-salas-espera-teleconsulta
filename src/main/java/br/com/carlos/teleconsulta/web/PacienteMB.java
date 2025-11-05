@@ -88,10 +88,7 @@ public class PacienteMB implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(s, m, null));
     }
 
-    // Select de sexo
     public Sexo[] getSexos() { return Sexo.values(); }
-
-    // getters/setters
     public List<Paciente> getPacientes() { return pacientes; }
     public Paciente getAtual() { return atual; }
     public void setAtual(Paciente atual) { this.atual = atual; }
