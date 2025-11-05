@@ -26,7 +26,7 @@ public class UsuarioMB implements Serializable {
     private List<Usuario> usuarios;
     private Usuario atual = new Usuario();
 
-    // filtros por período (datas simples na tela)
+
     private LocalDate inicio;
     private LocalDate fim;
 
@@ -45,7 +45,7 @@ public class UsuarioMB implements Serializable {
     }
 
     public void editar(Usuario u) {
-        // carrega do banco para evitar stale state
+
         this.atual = service.encontrar(u.getId());
         if (this.atual == null) {
             addMsg(FacesMessage.SEVERITY_WARN, "Registro não encontrado.");
@@ -76,17 +76,32 @@ public class UsuarioMB implements Serializable {
         }
     }
 
+    public void limparFiltro() {
+        inicio = null;
+        fim = null;
+        carregarLista();
+    }
+
     public void filtrarPeriodo() {
+        if (inicio == null && fim == null) {
+            carregarLista();
+            return;
+        }
+        if (inicio != null && fim != null && inicio.isAfter(fim)) {
+            addMsg(FacesMessage.SEVERITY_WARN, "Período inválido: início após o fim.");
+            return;
+        }
         LocalDateTime i = (inicio != null) ? inicio.atStartOfDay() : null;
         LocalDateTime f = (fim != null) ? fim.atTime(LocalTime.MAX) : null;
         usuarios = service.buscarPorPeriodo(i, f);
     }
 
+
     private void addMsg(FacesMessage.Severity s, String m) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(s, m, null));
     }
 
-    // getters/setters
+
     public List<Usuario> getUsuarios() { return usuarios; }
     public Usuario getAtual() { return atual; }
     public void setAtual(Usuario atual) { this.atual = atual; }

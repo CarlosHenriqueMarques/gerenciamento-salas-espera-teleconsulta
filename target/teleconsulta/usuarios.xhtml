@@ -7,7 +7,7 @@
     <title>Usuários</title>
 </h:head>
 <h:body>
-    <h:form id="frm"> <!-- ÚNICA form na página -->
+    <h:form id="frm">
         <p:growl id="growl" showDetail="false" />
 
         <p:panel header="Gerenciamento de Usuários" style="margin-bottom:1rem">
@@ -17,23 +17,43 @@
                                      icon="pi pi-plus"
                                      process="@this"
                                      actionListener="#{usuarioMB.novo}"
-                                     update=":frm:dlgUsuario"
+                                     update="dlgUsuario"
                                      oncomplete="PF('dlgUsuario').show()" />
                 </p:toolbarGroup>
+
                 <p:toolbarGroup align="right">
-                    <p:datePicker value="#{usuarioMB.inicio}" pattern="dd/MM/yyyy" placeholder="Início"
+                    <p:datePicker id="dtInicio"
+                                  value="#{usuarioMB.inicio}"
+                                  pattern="dd/MM/yyyy"
+                                  placeholder="Início"
                                   showIcon="true" />
+
                     <p:spacer width="8"/>
-                    <p:datePicker value="#{usuarioMB.fim}" pattern="dd/MM/yyyy" placeholder="Fim"
+
+                    <p:datePicker id="dtFim"
+                                  value="#{usuarioMB.fim}"
+                                  pattern="dd/MM/yyyy"
+                                  placeholder="Fim"
                                   showIcon="true" />
+
                     <p:spacer width="8"/>
+
                     <p:commandButton value="Filtrar"
                                      icon="pi pi-filter"
-                                     process="@this"
+                                     process="@this dtInicio dtFim"
                                      actionListener="#{usuarioMB.filtrarPeriodo}"
-                                     update=":frm:tblUsuarios :frm:growl" />
+                                     update="tblUsuarios growl" />
+
+                    <p:spacer width="6"/>
+
+                    <p:commandButton value="Limpar"
+                                     icon="pi pi-times"
+                                     process="@this"
+                                     actionListener="#{usuarioMB.limparFiltro}"
+                                     update="dtInicio dtFim tblUsuarios growl" />
                 </p:toolbarGroup>
             </p:toolbar>
+
         </p:panel>
 
         <p:dataTable id="tblUsuarios" value="#{usuarioMB.usuarios}" var="u"
@@ -70,7 +90,6 @@
             </p:column>
         </p:dataTable>
 
-        <!-- Diálogo (no MESMO form) -->
         <p:dialog id="dlgUsuario"
                   header="Usuário"
                   widgetVar="dlgUsuario"
@@ -78,7 +97,7 @@
                   closable="true"
                   resizable="false"
                   width="520"
-                  appendTo="@form"> <!-- <- antes estava @(body) -->
+                  appendTo="@form">
 
             <p:panelGrid columns="2" columnClasses="col1,col2" layout="grid" styleClass="ui-fluid" style="width:100%">
                 <p:outputLabel for="nome" value="Nome"/>

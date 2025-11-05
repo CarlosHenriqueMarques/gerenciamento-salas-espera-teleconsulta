@@ -43,7 +43,6 @@ public class UsuarioService {
         return qtd != null && qtd > 0L;
     }
 
-    // Exemplo usando Criteria (filtro por período)
     public List<Usuario> buscarPorPeriodo(LocalDateTime inicio, LocalDateTime fim) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Usuario> cq = cb.createQuery(Usuario.class);
