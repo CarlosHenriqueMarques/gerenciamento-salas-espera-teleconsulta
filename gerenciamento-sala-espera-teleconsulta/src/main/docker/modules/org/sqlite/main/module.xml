@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module name="org.sqlite" xmlns="urn:jboss:module:1.9">
+    <resources>
+        <resource-root path="sqlite-jdbc.jar"/>
+    </resources>
+    <dependencies>
+        <module name="java.se"/>
+    </dependencies>
+</module>

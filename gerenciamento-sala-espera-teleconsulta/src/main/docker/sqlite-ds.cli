@@ -1,0 +1,6 @@
+embed-server --std-out=echo --server-config=standalone.xml
+batch
+/subsystem=datasources/jdbc-driver=sqlite:add(driver-name=sqlite,driver-module-name=org.sqlite,driver-class-name=org.sqlite.JDBC)
+/subsystem=datasources/data-source=TeleconsultaDS:add(jndi-name=java:/jdbc/TeleconsultaDS,driver-name=sqlite,connection-url=jdbc:sqlite:${jboss.server.data.dir}/teleconsulta.db,enabled=true)
+run-batch
+stop-embedded-server

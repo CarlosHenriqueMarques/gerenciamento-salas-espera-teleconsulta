@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.1">
+    <persistence-unit name="teleconsultaPU" transaction-type="JTA">
+        <jta-data-source>java:/jdbc/TeleconsultaDS</jta-data-source>
+
+        <class>br.com.carlos.teleconsulta.domain.Usuario</class>
+
+        <properties>
+            <!-- DDL e logs -->
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+
+            <!-- Dialeto do SQLite (Hibernate 6 - community dialects) -->
+            <property name="hibernate.dialect" value="org.hibernate.community.dialect.SQLiteDialect"/>
+            <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
+        </properties>
+    </persistence-unit>
+</persistence>
