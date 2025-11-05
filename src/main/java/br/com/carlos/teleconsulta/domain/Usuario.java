@@ -25,7 +25,7 @@ public class Usuario implements Serializable {
     private String email;
 
     @NotBlank
-    @Size(min = 11, max = 11) // CPF sem pontuação
+    @Size(min = 11, max = 11)
     @Column(nullable = false, length = 11)
     private String cpf;
 
