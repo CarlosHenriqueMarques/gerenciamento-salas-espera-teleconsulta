@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Named("usuarioMB")
@@ -31,9 +32,14 @@ public class UsuarioMB implements Serializable {
 
     @PostConstruct
     public void init() {
-        usuarios = service.listarTodos();
+        usuarios = new ArrayList<>();
+        carregarLista();
+        atual = new Usuario();
     }
 
+    public void carregarLista() {
+        usuarios = service.listarTodos();
+    }
     public void novo() {
         atual = new Usuario();
     }

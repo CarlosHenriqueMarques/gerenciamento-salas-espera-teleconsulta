@@ -7,7 +7,7 @@
     <title>Usuários</title>
 </h:head>
 <h:body>
-    <h:form id="frm"> <!-- ÚNICA form na página para evitar problemas de @form -->
+    <h:form id="frm"> <!-- ÚNICA form na página -->
         <p:growl id="growl" showDetail="false" />
 
         <p:panel header="Gerenciamento de Usuários" style="margin-bottom:1rem">
@@ -17,7 +17,7 @@
                                      icon="pi pi-plus"
                                      process="@this"
                                      actionListener="#{usuarioMB.novo}"
-                                     update="dlgUsuario"
+                                     update=":frm:dlgUsuario"
                                      oncomplete="PF('dlgUsuario').show()" />
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
@@ -31,7 +31,7 @@
                                      icon="pi pi-filter"
                                      process="@this"
                                      actionListener="#{usuarioMB.filtrarPeriodo}"
-                                     update="tblUsuarios growl" />
+                                     update=":frm:tblUsuarios :frm:growl" />
                 </p:toolbarGroup>
             </p:toolbar>
         </p:panel>
@@ -60,40 +60,63 @@
                 <p:commandButton icon="pi pi-pencil" title="Editar"
                                  process="@this"
                                  actionListener="#{usuarioMB.editar(u)}"
-                                 update="dlgUsuario"
+                                 update=":frm:dlgUsuario"
                                  oncomplete="PF('dlgUsuario').show()" />
                 <p:spacer width="6"/>
                 <p:commandButton icon="pi pi-trash" title="Excluir"
                                  process="@this"
                                  actionListener="#{usuarioMB.excluir(u)}"
-                                 update="tblUsuarios growl" />
+                                 update=":frm:tblUsuarios :frm:growl" />
             </p:column>
         </p:dataTable>
 
-        <!-- Diálogo de cadastro/edição (mesma form) -->
-        <p:dialog id="dlgUsuario" header="Usuário" widgetVar="dlgUsuario" modal="true" closable="true" resizable="false" width="520">
+        <!-- Diálogo (no MESMO form) -->
+        <p:dialog id="dlgUsuario"
+                  header="Usuário"
+                  widgetVar="dlgUsuario"
+                  modal="true"
+                  closable="true"
+                  resizable="false"
+                  width="520"
+                  appendTo="@form"> <!-- <- antes estava @(body) -->
+
             <p:panelGrid columns="2" columnClasses="col1,col2" layout="grid" styleClass="ui-fluid" style="width:100%">
-                <p:outputLabel for="nome" value="Nome *"/>
-                <p:inputText id="nome" value="#{usuarioMB.atual.nome}" required="true" maxlength="120"/>
+                <p:outputLabel for="nome" value="Nome"/>
+                <p:inputText id="nome"
+                             value="#{usuarioMB.atual.nome}"
+                             required="true"
+                             requiredMessage="Informe o nome"
+                             maxlength="120"/>
 
-                <p:outputLabel for="email" value="E-mail *"/>
-                <p:inputText id="email" value="#{usuarioMB.atual.email}" required="true" maxlength="150"/>
+                <p:outputLabel for="email" value="E-mail"/>
+                <p:inputText id="email"
+                             value="#{usuarioMB.atual.email}"
+                             required="true"
+                             requiredMessage="Informe o e-mail"
+                             maxlength="150"/>
 
-                <p:outputLabel for="cpf" value="CPF * (somente números)"/>
-                <p:inputText id="cpf" value="#{usuarioMB.atual.cpf}" required="true" maxlength="11"/>
+                <p:outputLabel for="cpf" value="CPF (somente números)"/>
+                <p:inputText id="cpf"
+                             value="#{usuarioMB.atual.cpf}"
+                             required="true"
+                             requiredMessage="Informe o CPF"
+                             maxlength="11"/>
             </p:panelGrid>
 
             <p:separator/>
 
             <p:commandButton value="Salvar" icon="pi pi-check"
-                             process="@this, nome, email, cpf"
+                             process=":frm:dlgUsuario"
                              actionListener="#{usuarioMB.salvar}"
-                             update="tblUsuarios growl"
+                             update=":frm:tblUsuarios :frm:growl"
                              oncomplete="if (!args.validationFailed) PF('dlgUsuario').hide();" />
+
             <p:spacer width="8"/>
+
             <p:commandButton value="Cancelar" icon="pi pi-times" type="button"
                              onclick="PF('dlgUsuario').hide()"/>
         </p:dialog>
+
     </h:form>
 </h:body>
 </html>
