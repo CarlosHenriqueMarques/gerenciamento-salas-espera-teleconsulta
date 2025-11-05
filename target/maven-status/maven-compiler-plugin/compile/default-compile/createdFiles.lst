@@ -1,0 +1,3 @@
+br\com\carlos\teleconsulta\domain\Usuario.class
+br\com\carlos\teleconsulta\web\UsuarioMB.class
+br\com\carlos\teleconsulta\service\UsuarioService.class
