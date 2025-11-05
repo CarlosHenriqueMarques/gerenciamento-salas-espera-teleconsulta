@@ -1,5 +1,8 @@
 br\com\carlos\teleconsulta\domain\Paciente.class
 br\com\carlos\teleconsulta\service\PacienteService.class
+br\com\carlos\teleconsulta\domain\UnidadeSaude.class
+br\com\carlos\teleconsulta\service\UnidadeSaudeService.class
+br\com\carlos\teleconsulta\web\UnidadeSaudeMB.class
 br\com\carlos\teleconsulta\domain\Usuario.class
 br\com\carlos\teleconsulta\web\PacienteMB.class
 br\com\carlos\teleconsulta\web\UsuarioMB.class
