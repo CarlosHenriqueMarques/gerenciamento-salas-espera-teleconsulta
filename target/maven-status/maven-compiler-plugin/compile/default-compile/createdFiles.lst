@@ -1,10 +1,13 @@
-br\com\carlos\teleconsulta\domain\Paciente.class
 br\com\carlos\teleconsulta\service\PacienteService.class
 br\com\carlos\teleconsulta\domain\UnidadeSaude.class
 br\com\carlos\teleconsulta\service\UnidadeSaudeService.class
 br\com\carlos\teleconsulta\web\UnidadeSaudeMB.class
-br\com\carlos\teleconsulta\domain\Usuario.class
 br\com\carlos\teleconsulta\web\PacienteMB.class
 br\com\carlos\teleconsulta\web\UsuarioMB.class
 br\com\carlos\teleconsulta\domain\Sexo.class
 br\com\carlos\teleconsulta\service\UsuarioService.class
+br\com\carlos\teleconsulta\web\SalaMB.class
+br\com\carlos\teleconsulta\domain\Paciente.class
+br\com\carlos\teleconsulta\domain\Sala.class
+br\com\carlos\teleconsulta\domain\Usuario.class
+br\com\carlos\teleconsulta\service\SalaService.class
