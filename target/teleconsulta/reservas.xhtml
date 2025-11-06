@@ -46,19 +46,16 @@
                                   placeholder="Término"/>
                     <p:spacer width="6"/>
 
-                    <p:selectOneMenu id="unidadeFiltro" value="#{reservaMB.unidadeFiltroId}" style="width:18rem">
+                    <p:selectOneMenu id="unidadeFiltro" value="#{reservaMB.unidadeFiltroId}">
                         <f:selectItem itemLabel="(todas as unidades)" itemValue="#{null}"/>
-                        <f:selectItems value="#{reservaMB.unidades}" var="u"
-                                       itemValue="#{u.id}" itemLabel="#{u.nome}"/>
-                        <p:ajax listener="#{reservaMB.onTrocaUnidadeFiltro}"
-                                update=":frm:salaFiltro"/>
+                        <f:selectItems value="#{reservaMB.unidades}" var="u" itemValue="#{u.id}" itemLabel="#{u.nome}"/>
+                        <p:ajax listener="#{reservaMB.onTrocaUnidadeFiltro}" update="salaFiltro"/>
                     </p:selectOneMenu>
                     <p:spacer width="6"/>
 
-                    <p:selectOneMenu id="salaFiltro" value="#{reservaMB.salaFiltroId}" style="width:18rem">
+                    <p:selectOneMenu id="salaFiltro" value="#{reservaMB.salaFiltroId}">
                         <f:selectItem itemLabel="(todas as salas)" itemValue="#{null}"/>
-                        <f:selectItems value="#{reservaMB.salasDaUnidade}" var="s"
-                                       itemValue="#{s.id}" itemLabel="#{s.nome}"/>
+                        <f:selectItems value="#{reservaMB.salasDaUnidade}" var="s" itemValue="#{s.id}" itemLabel="#{s.nome}"/>
                     </p:selectOneMenu>
                     <p:spacer width="6"/>
 

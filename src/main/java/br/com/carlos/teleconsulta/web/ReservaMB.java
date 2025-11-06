@@ -50,9 +50,13 @@ public class ReservaMB implements Serializable {
         try { unidades = unidadeService.listarTodos(); } catch (Exception ignored) {}
         try { usuarios = usuarioService.listarTodos(); } catch (Exception ignored) {}
         try { reservas = reservaService.listarTodos(); } catch (Exception ignored) {}
-        salasDaUnidade = new ArrayList<>();
+
+        // <<< carregar TODAS as salas para o filtro ao abrir a tela
+        try { salasDaUnidade = salaService.listarTodos(); } catch (Exception e) { salasDaUnidade = new ArrayList<>(); }
+
         salasDaUnidadeSel = new ArrayList<>();
     }
+
     public void novo() {
         atual = new Reserva();
         unidadeSelId = null;
@@ -106,7 +110,7 @@ public class ReservaMB implements Serializable {
             }
             List<Usuario> selecionados = usuarioService.buscarPorIds(usuarioSelIds);
 
-            boolean conflito = reservaService.existeConflito(sala.getId() , atual.getInicio(), atual.getFim(),atual.getId());
+            boolean conflito = reservaService.existeConflito(sala.getId(), atual.getInicio(), atual.getFim(), atual.getId());
             if (conflito) {
                 addMsg(FacesMessage.SEVERITY_ERROR, "Conflito: já existe reserva para esta sala no período.");
                 return;
@@ -143,7 +147,10 @@ public class ReservaMB implements Serializable {
         unidadeFiltroId = null;
         salaFiltroId = null;
         usuarioFiltroId = null;
-        salasDaUnidade = new ArrayList<>();
+
+        // <<< restaurar TODAS as salas no combo de filtro
+        try { salasDaUnidade = salaService.listarTodos(); } catch (Exception e) { salasDaUnidade = new ArrayList<>(); }
+
         reservas = reservaService.listarTodos();
     }
 
@@ -151,7 +158,8 @@ public class ReservaMB implements Serializable {
         if (unidadeFiltroId != null) {
             salasDaUnidade = salaService.listarPorUnidade(unidadeFiltroId);
         } else {
-            salasDaUnidade = new ArrayList<>();
+            // <<< se não há unidade selecionada, mostrar TODAS as salas
+            try { salasDaUnidade = salaService.listarTodos(); } catch (Exception e) { salasDaUnidade = new ArrayList<>(); }
         }
         salaFiltroId = null;
     }
