@@ -55,7 +55,15 @@ public class SalaService {
         Sala ref = em.getReference(Sala.class, id);
         em.remove(ref);
     }
-    
+
+    public List<Sala> listarPorUnidade(Long unidadeId) {
+        return em.createQuery(
+                        "select s from Sala s " +
+                                "where s.unidadeSaude.id = :uid " +
+                                "order by s.nome asc", Sala.class)
+                .setParameter("uid", unidadeId)
+                .getResultList();
+    }
     public boolean jaExisteNomeNaUnidade(String nome, Long unidadeId, Long ignorarId) {
         StringBuilder jpql = new StringBuilder("""
                 select count(s) from Sala s

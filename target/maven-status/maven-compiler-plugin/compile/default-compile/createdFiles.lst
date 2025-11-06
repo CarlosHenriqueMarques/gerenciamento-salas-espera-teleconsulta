@@ -1,3 +1,4 @@
+br\com\carlos\teleconsulta\domain\ReservaStatus.class
 br\com\carlos\teleconsulta\service\PacienteService.class
 br\com\carlos\teleconsulta\domain\UnidadeSaude.class
 br\com\carlos\teleconsulta\service\UnidadeSaudeService.class
@@ -9,5 +10,8 @@ br\com\carlos\teleconsulta\service\UsuarioService.class
 br\com\carlos\teleconsulta\web\SalaMB.class
 br\com\carlos\teleconsulta\domain\Paciente.class
 br\com\carlos\teleconsulta\domain\Sala.class
+br\com\carlos\teleconsulta\service\ReservaService.class
 br\com\carlos\teleconsulta\domain\Usuario.class
 br\com\carlos\teleconsulta\service\SalaService.class
+br\com\carlos\teleconsulta\domain\Reserva.class
+br\com\carlos\teleconsulta\web\ReservaMB.class

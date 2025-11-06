@@ -1,13 +1,17 @@
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\domain\Paciente.java
+C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\domain\Reserva.java
+C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\domain\ReservaStatus.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\domain\Sala.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\domain\Sexo.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\domain\UnidadeSaude.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\domain\Usuario.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\service\PacienteService.java
+C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\service\ReservaService.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\service\SalaService.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\service\UnidadeSaudeService.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\service\UsuarioService.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\PacienteMB.java
+C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\ReservaMB.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\SalaMB.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\UnidadeSaudeMB.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\UsuarioMB.java

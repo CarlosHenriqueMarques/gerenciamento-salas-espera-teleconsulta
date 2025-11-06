@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import jakarta.persistence.criteria.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Stateless
@@ -42,6 +43,14 @@ public class UsuarioService {
                 .getSingleResult();
         return qtd != null && qtd > 0L;
     }
+
+    public List<Usuario> buscarPorIds(List<Long> ids) {
+        if (ids == null || ids.isEmpty()) return Collections.emptyList();
+        return em.createQuery("select u from Usuario u where u.id in :ids order by u.nome", Usuario.class)
+                .setParameter("ids", ids)
+                .getResultList();
+    }
+
 
     public List<Usuario> buscarPorPeriodo(LocalDateTime inicio, LocalDateTime fim) {
         CriteriaBuilder cb = em.getCriteriaBuilder();
