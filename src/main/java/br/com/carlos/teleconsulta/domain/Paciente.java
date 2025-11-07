@@ -1,5 +1,6 @@
 package br.com.carlos.teleconsulta.domain;
 
+import br.com.carlos.teleconsulta.domain.enums.Sexo;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
@@ -52,7 +53,6 @@ public class Paciente implements Serializable {
     @Size(max = 255)
     private String endereco;
 
-    // getters/setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 

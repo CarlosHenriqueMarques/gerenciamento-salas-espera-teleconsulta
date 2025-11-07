@@ -1,5 +1,6 @@
 package br.com.carlos.teleconsulta.domain;
 
+import br.com.carlos.teleconsulta.domain.enums.ReservaStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import java.io.Serializable;

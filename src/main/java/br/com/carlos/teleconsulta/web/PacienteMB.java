@@ -1,7 +1,7 @@
 package br.com.carlos.teleconsulta.web;
 
 import br.com.carlos.teleconsulta.domain.Paciente;
-import br.com.carlos.teleconsulta.domain.Sexo;
+import br.com.carlos.teleconsulta.domain.enums.Sexo;
 import br.com.carlos.teleconsulta.service.PacienteService;
 import jakarta.annotation.PostConstruct;
 import jakarta.faces.application.FacesMessage;
