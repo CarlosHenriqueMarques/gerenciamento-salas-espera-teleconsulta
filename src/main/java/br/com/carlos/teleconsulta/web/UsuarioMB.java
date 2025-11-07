@@ -8,6 +8,7 @@ import jakarta.faces.context.FacesContext;
 import jakarta.faces.view.ViewScoped;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,46 +20,59 @@ import java.util.List;
 @ViewScoped
 public class UsuarioMB implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Inject
     private UsuarioService service;
 
-    private List<Usuario> usuarios;
+    private List<Usuario> usuarios = new ArrayList<>();
     private Usuario atual = new Usuario();
-
 
     private LocalDate inicio;
     private LocalDate fim;
 
     @PostConstruct
     public void init() {
-        usuarios = new ArrayList<>();
         carregarLista();
         atual = new Usuario();
     }
 
     public void carregarLista() {
-        usuarios = service.listarTodos();
+        try {
+            usuarios = service.listarTodos();
+        } catch (Exception e) {
+            addMsg(FacesMessage.SEVERITY_ERROR, "Erro ao carregar lista: " + e.getMessage());
+        }
     }
+
     public void novo() {
         atual = new Usuario();
     }
 
     public void editar(Usuario u) {
-
-        this.atual = service.encontrar(u.getId());
-        if (this.atual == null) {
-            addMsg(FacesMessage.SEVERITY_WARN, "Registro não encontrado.");
+        try {
+            this.atual = service.encontrar(u.getId());
+            if (this.atual == null) {
+                addMsg(FacesMessage.SEVERITY_WARN, "Registro não encontrado.");
+            }
+        } catch (Exception e) {
+            addMsg(FacesMessage.SEVERITY_ERROR, "Erro ao carregar registro: " + e.getMessage());
         }
     }
 
     public void salvar() {
         try {
+            if (atual.getNome() != null) atual.setNome(atual.getNome().trim());
+            if (atual.getEmail() != null) atual.setEmail(atual.getEmail().trim());
+            if (atual.getCpf() != null) atual.setCpf(atual.getCpf().trim());
+
             if (atual.getId() == null && service.cpfExiste(atual.getCpf())) {
                 addMsg(FacesMessage.SEVERITY_ERROR, "CPF já cadastrado.");
                 return;
             }
+
             service.salvar(atual);
-            usuarios = service.listarTodos();
+            carregarLista();
             addMsg(FacesMessage.SEVERITY_INFO, "Usuário salvo com sucesso.");
         } catch (Exception e) {
             addMsg(FacesMessage.SEVERITY_ERROR, "Erro ao salvar: " + e.getMessage());
@@ -68,7 +82,7 @@ public class UsuarioMB implements Serializable {
     public void excluir(Usuario u) {
         try {
             service.excluir(u.getId());
-            usuarios = service.listarTodos();
+            carregarLista();
             addMsg(FacesMessage.SEVERITY_INFO, "Usuário excluído.");
         } catch (Exception e) {
             addMsg(FacesMessage.SEVERITY_ERROR, "Erro ao excluir: " + e.getMessage());
@@ -86,21 +100,25 @@ public class UsuarioMB implements Serializable {
             carregarLista();
             return;
         }
+
         if (inicio != null && fim != null && inicio.isAfter(fim)) {
             addMsg(FacesMessage.SEVERITY_WARN, "Período inválido: início após o fim.");
             return;
         }
+
         LocalDateTime i = (inicio != null) ? inicio.atStartOfDay() : null;
         LocalDateTime f = (fim != null) ? fim.atTime(LocalTime.MAX) : null;
-        usuarios = service.buscarPorPeriodo(i, f);
-    }
 
+        try {
+            usuarios = service.buscarPorPeriodo(i, f);
+        } catch (Exception e) {
+            addMsg(FacesMessage.SEVERITY_ERROR, "Erro ao filtrar: " + e.getMessage());
+        }
+    }
 
     private void addMsg(FacesMessage.Severity s, String m) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(s, m, null));
     }
-
-
     public List<Usuario> getUsuarios() { return usuarios; }
     public Usuario getAtual() { return atual; }
     public void setAtual(Usuario atual) { this.atual = atual; }

@@ -7,6 +7,8 @@
     <title>Usuários</title>
 </h:head>
 <h:body>
+
+    <!-- Link para Início -->
     <p:toolbar style="margin-bottom:1rem">
         <p:toolbarGroup>
             <p:linkButton value="Início"
@@ -25,7 +27,7 @@
                                      icon="pi pi-plus"
                                      process="@this"
                                      actionListener="#{usuarioMB.novo}"
-                                     update="dlgUsuario"
+                                     update=":frm:dlgUsuario"
                                      oncomplete="PF('dlgUsuario').show()" />
                 </p:toolbarGroup>
 
@@ -35,22 +37,19 @@
                                   pattern="dd/MM/yyyy"
                                   placeholder="Início"
                                   showIcon="true" />
-
                     <p:spacer width="8"/>
-
                     <p:datePicker id="dtFim"
                                   value="#{usuarioMB.fim}"
                                   pattern="dd/MM/yyyy"
                                   placeholder="Fim"
                                   showIcon="true" />
-
                     <p:spacer width="8"/>
 
                     <p:commandButton value="Filtrar"
                                      icon="pi pi-filter"
-                                     process="@this dtInicio dtFim"
+                                     process="@this :frm:dtInicio :frm:dtFim"
                                      actionListener="#{usuarioMB.filtrarPeriodo}"
-                                     update="tblUsuarios growl" />
+                                     update=":frm:tblUsuarios :frm:growl" />
 
                     <p:spacer width="6"/>
 
@@ -58,32 +57,39 @@
                                      icon="pi pi-times"
                                      process="@this"
                                      actionListener="#{usuarioMB.limparFiltro}"
-                                     update="dtInicio dtFim tblUsuarios growl" />
+                                     update=":frm:dtInicio :frm:dtFim :frm:tblUsuarios :frm:growl"
+                                     resetValues="true" />
                 </p:toolbarGroup>
             </p:toolbar>
-
         </p:panel>
 
-        <p:dataTable id="tblUsuarios" value="#{usuarioMB.usuarios}" var="u"
+        <p:dataTable id="tblUsuarios"
+                     value="#{usuarioMB.usuarios}" var="u"
                      paginator="true" rows="10" responsiveLayout="scroll"
                      emptyMessage="Nenhum usuário encontrado.">
+
             <p:column headerText="ID" sortBy="#{u.id}" style="width:80px;text-align:center">
                 <h:outputText value="#{u.id}" />
             </p:column>
+
             <p:column headerText="Nome" sortBy="#{u.nome}">
                 <h:outputText value="#{u.nome}" />
             </p:column>
+
             <p:column headerText="E-mail" sortBy="#{u.email}">
                 <h:outputText value="#{u.email}" />
             </p:column>
+
             <p:column headerText="CPF" sortBy="#{u.cpf}" style="width:130px">
                 <h:outputText value="#{u.cpf}" />
             </p:column>
+
             <p:column headerText="Cadastro" sortBy="#{u.dataCadastro}" style="width:220px">
                 <h:outputText value="#{u.dataCadastro}">
                     <f:convertDateTime type="localDateTime" pattern="dd/MM/yyyy HH:mm" />
                 </h:outputText>
             </p:column>
+
             <p:column headerText="Ações" style="width:160px;text-align:center">
                 <p:commandButton icon="pi pi-pencil" title="Editar"
                                  process="@this"
@@ -98,6 +104,7 @@
             </p:column>
         </p:dataTable>
 
+        <!-- Diálogo de cadastro/edição -->
         <p:dialog id="dlgUsuario"
                   header="Usuário"
                   widgetVar="dlgUsuario"
