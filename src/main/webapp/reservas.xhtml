@@ -8,8 +8,6 @@
     <title>Reservas</title>
 </h:head>
 <h:body>
-
-    <!-- Link para Início -->
     <p:toolbar style="margin-bottom:1rem">
         <p:toolbarGroup>
             <p:linkButton value="Início" icon="pi pi-home" outcome="/index.xhtml"/>
@@ -31,7 +29,6 @@
 
                 <p:toolbarGroup align="right">
 
-                    <!-- Filtros (usando ids absolutos no process/update) -->
                     <p:datePicker id="ini"
                                   value="#{reservaMB.filtroIni}"
                                   pattern="dd/MM/yyyy HH:mm"
@@ -135,19 +132,19 @@
             <p:panelGrid columns="2" columnClasses="col1,col2"
                          layout="grid" styleClass="ui-fluid" style="width:100%">
 
-                <p:outputLabel for="iniSel" value="Início *"/>
+                <p:outputLabel for="iniSel" value="Início"/>
                 <p:datePicker id="iniSel"
                               value="#{reservaMB.atual.inicio}"
                               pattern="dd/MM/yyyy HH:mm"
                               showTime="true" showIcon="true" required="true"/>
 
-                <p:outputLabel for="fimSel" value="Término *"/>
+                <p:outputLabel for="fimSel" value="Término"/>
                 <p:datePicker id="fimSel"
                               value="#{reservaMB.atual.fim}"
                               pattern="dd/MM/yyyy HH:mm"
                               showTime="true" showIcon="true" required="true"/>
 
-                <p:outputLabel for="unidadeSel" value="Unidade de Saúde *"/>
+                <p:outputLabel for="unidadeSel" value="Unidade de Saúde"/>
                 <p:selectOneMenu id="unidadeSel" value="#{reservaMB.unidadeSelId}" style="width:100%" required="true">
                     <f:selectItem itemLabel="(selecione)" itemValue="#{null}"/>
                     <f:selectItems value="#{reservaMB.unidades}" var="u"
@@ -156,14 +153,14 @@
                             update=":frm:salaSel"/>
                 </p:selectOneMenu>
 
-                <p:outputLabel for="salaSel" value="Sala *"/>
+                <p:outputLabel for="salaSel" value="Sala"/>
                 <p:selectOneMenu id="salaSel" value="#{reservaMB.salaSelId}" style="width:100%" required="true">
                     <f:selectItem itemLabel="(selecione)" itemValue="#{null}"/>
                     <f:selectItems value="#{reservaMB.salasDaUnidadeSel}" var="s"
                                    itemValue="#{s.id}" itemLabel="#{s.nome}"/>
                 </p:selectOneMenu>
 
-                <p:outputLabel for="usuariosSel" value="Usuários *"/>
+                <p:outputLabel for="usuariosSel" value="Usuários"/>
                 <p:selectCheckboxMenu id="usuariosSel"
                                       value="#{reservaMB.usuarioSelIds}"
                                       label="Selecione usuários"

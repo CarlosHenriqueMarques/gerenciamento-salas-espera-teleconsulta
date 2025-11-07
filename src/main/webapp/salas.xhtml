@@ -7,17 +7,13 @@
     <title>Salas</title>
 </h:head>
 <h:body>
-
-    <!-- Link para Início -->
     <p:toolbar style="margin-bottom:1rem">
         <p:toolbarGroup>
             <p:linkButton value="Início" icon="pi pi-home" outcome="/index.xhtml" />
         </p:toolbarGroup>
     </p:toolbar>
-
     <h:form id="frm">
         <p:growl id="growl" showDetail="false" />
-
         <p:panel header="Gerenciamento de Salas" style="margin-bottom:1rem">
             <p:toolbar>
                 <p:toolbarGroup>
@@ -27,7 +23,6 @@
                                      update=":frm:dlgSala"
                                      oncomplete="PF('dlgSala').show()" />
                 </p:toolbarGroup>
-
                 <p:toolbarGroup align="right">
                     <p:inputText id="termo" value="#{salaMB.termo}"
                                  placeholder="Nome da sala" style="width:18rem"/>
@@ -95,21 +90,20 @@
             </p:column>
         </p:dataTable>
 
-        <!-- Diálogo de cadastro/edição -->
         <p:dialog id="dlgSala" header="Sala" widgetVar="dlgSala" modal="true"
                   closable="true" resizable="false" width="600">
 
             <p:panelGrid columns="2" columnClasses="col1,col2"
                          layout="grid" styleClass="ui-fluid" style="width:100%">
 
-                <p:outputLabel for="nome" value="Nome *"/>
+                <p:outputLabel for="nome" value="Nome"/>
                 <p:inputText id="nome" value="#{salaMB.atual.nome}" required="true" maxlength="120"/>
 
-                <p:outputLabel for="capacidade" value="Capacidade *"/>
+                <p:outputLabel for="capacidade" value="Capacidade"/>
                 <p:inputNumber id="capacidade" value="#{salaMB.atual.capacidade}"
-                               decimalPlaces="0" minValue="1" required="true" />
+                               decimalPlaces="0" minValue="1"  maxValue="99" required="true" />
 
-                <p:outputLabel for="unidadeSel" value="Unidade de Saúde *"/>
+                <p:outputLabel for="unidadeSel" value="Unidade de Saúde"/>
                 <p:selectOneMenu id="unidadeSel" value="#{salaMB.unidadeSelId}" required="true" style="width:100%">
                     <f:selectItem itemLabel="(selecione)" itemValue="#{null}"/>
                     <f:selectItems value="#{salaMB.unidades}" var="u"
