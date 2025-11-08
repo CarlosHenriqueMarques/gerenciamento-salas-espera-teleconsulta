@@ -32,25 +32,6 @@ public class AuthMB implements Serializable {
     @Inject
     private PasswordService passwordService;
 
-//    public String logar() {
-//        Conta c = contaService.validarLogin(login, senha, passwordService);
-//        if (c == null) {
-//            FacesContext.getCurrentInstance().addMessage(null,
-//                    new FacesMessage(FacesMessage.SEVERITY_ERROR, "Login ou senha inválidos.", null));
-//            FacesContext.getCurrentInstance().validationFailed();
-//            return null; // fica na mesma página
-//        }
-//
-//        this.contaLogada = c;
-//        FacesContext.getCurrentInstance().getExternalContext()
-//                .getSessionMap().put("usuarioLogado", c);
-//
-//        this.senha = null; // não manter senha em memória
-//
-//        // navegação padrão JSF com redirect
-//        return "/index.xhtml?faces-redirect=true";
-//    }
-
     public void logar() {
         Conta c = contaService.validarLogin(login, senha, passwordService);
         if (c == null) {

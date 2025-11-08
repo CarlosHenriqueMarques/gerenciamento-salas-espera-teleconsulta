@@ -8,14 +8,24 @@
 </h:head>
 <h:body>
 
-    <!-- Link para Início -->
     <p:toolbar style="margin-bottom:1rem">
         <p:toolbarGroup>
             <p:linkButton value="Início"
                           icon="pi pi-home"
                           outcome="/index.xhtml" />
         </p:toolbarGroup>
+
+        <p:toolbarGroup align="right">
+            <h:form id="frmTop">
+                <h:outputText value="Olá, #{authMB.contaLogada.login}" rendered="#{authMB.logado}" />
+                <p:spacer width="8" rendered="#{authMB.logado}"/>
+                <p:commandButton value="Sair" icon="pi pi-sign-out"
+                                 action="#{authMB.logout}"
+                                 ajax="false" rendered="#{authMB.logado}" />
+            </h:form>
+        </p:toolbarGroup>
     </p:toolbar>
+
 
     <h:form id="frm">
         <p:growl id="growl" showDetail="false" />
