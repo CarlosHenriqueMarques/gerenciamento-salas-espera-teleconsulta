@@ -39,7 +39,7 @@
                         <span class="p-input-icon-left" style="width:100%">
                             <i class="pi pi-user" />
                             <p:inputText id="login"
-                                         value="#{authMB.login}"
+                                         value="#{authController.login}"
                                          placeholder="Login"
                                          required="true"
                                          requiredMessage="Informe o login"
@@ -52,7 +52,7 @@
                         <span class="p-input-icon-left" style="width:100%">
                             <i class="pi pi-lock" />
                             <p:password id="senha"
-                                        value="#{authMB.senha}"
+                                        value="#{authController.senha}"
                                         placeholder="Senha"
                                         feedback="false"
                                         toggleMask="true"
@@ -68,7 +68,7 @@
                                      value="Entrar"
                                      icon="pi pi-sign-in"
                                      process="@form"
-                                     action="#{authMB.logar}"
+                                     action="#{authController.logar}"
                                      ajax="true"
                                      update="msgsLogin loginMsg senhaMsg"
                                      style="width:100%"/>

@@ -7,7 +7,7 @@ C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\t
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\domain\Sala.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\domain\UnidadeSaude.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\domain\Usuario.java
-C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\security\controller\AuthMB.java
+C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\security\controller\AuthController.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\security\filter\AuthFilter.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\service\ContaService.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\service\PacienteService.java

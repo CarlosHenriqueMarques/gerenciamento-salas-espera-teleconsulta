@@ -24,12 +24,12 @@
                     </p:toolbarGroup>
 
                     <p:toolbarGroup align="right">
-                        <h:panelGroup rendered="#{authMB.logado}">
-                            <h:outputText value="Olá, #{authMB.contaLogada.login}" style="color:#475569"/>
+                        <h:panelGroup rendered="#{authController.logado}">
+                            <h:outputText value="Olá, #{authController.contaLogada.login}" style="color:#475569"/>
                             <p:spacer width="8"/>
                             <p:commandButton value="Sair"
                                              icon="pi pi-sign-out"
-                                             actionListener="#{authMB.logout}"
+                                             actionListener="#{authController.logout}"
                                              ajax="false"
                                              styleClass="p-button-outlined p-button-danger" />
                         </h:panelGroup>

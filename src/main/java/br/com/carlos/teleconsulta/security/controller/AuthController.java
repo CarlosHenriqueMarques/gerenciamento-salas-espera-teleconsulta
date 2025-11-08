@@ -15,9 +15,9 @@ import org.primefaces.PrimeFaces;
 import java.io.IOException;
 import java.io.Serializable;
 
-@Named("authMB")
+@Named("authController")
 @SessionScoped
-public class AuthMB implements Serializable {
+public class AuthController implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

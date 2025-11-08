@@ -16,11 +16,11 @@
 
         <p:toolbarGroup align="right">
             <h:form id="frmTop">
-                <h:outputText value="Olá, #{authMB.contaLogada.login}" rendered="#{authMB.logado}" />
-                <p:spacer width="8" rendered="#{authMB.logado}"/>
+                <h:outputText value="Olá, #{authController.contaLogada.login}" rendered="#{authController.logado}" />
+                <p:spacer width="8" rendered="#{authController.logado}"/>
                 <p:commandButton value="Sair" icon="pi pi-sign-out"
-                                 action="#{authMB.logout}"
-                                 ajax="false" rendered="#{authMB.logado}" />
+                                 action="#{authController.logout}"
+                                 ajax="false" rendered="#{authController.logado}" />
             </h:form>
         </p:toolbarGroup>
     </p:toolbar>
