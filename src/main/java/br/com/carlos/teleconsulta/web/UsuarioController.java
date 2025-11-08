@@ -16,9 +16,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-@Named("usuarioMB")
+@Named("usuarioController")
 @ViewScoped
-public class UsuarioMB implements Serializable {
+public class UsuarioController implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

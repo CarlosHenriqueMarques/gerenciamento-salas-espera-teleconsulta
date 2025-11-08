@@ -14,7 +14,7 @@ br\com\carlos\teleconsulta\service\UnidadeSaudeService.class
 br\com\carlos\teleconsulta\web\UnidadeSaudeMB.class
 br\com\carlos\teleconsulta\domain\Conta.class
 br\com\carlos\teleconsulta\web\PacienteMB.class
-br\com\carlos\teleconsulta\web\UsuarioMB.class
+br\com\carlos\teleconsulta\web\UsuarioController.class
 br\com\carlos\teleconsulta\startup\StartupSeed.class
 br\com\carlos\teleconsulta\domain\Paciente.class
 br\com\carlos\teleconsulta\domain\Sala.class

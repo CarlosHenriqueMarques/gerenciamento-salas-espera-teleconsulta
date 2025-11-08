@@ -36,20 +36,20 @@
                     <p:commandButton value="Novo"
                                      icon="pi pi-plus"
                                      process="@this"
-                                     actionListener="#{usuarioMB.novo}"
+                                     actionListener="#{usuarioController.novo}"
                                      update=":frm:dlgUsuario"
                                      oncomplete="PF('dlgUsuario').show()" />
                 </p:toolbarGroup>
 
                 <p:toolbarGroup align="right">
                     <p:datePicker id="dtInicio"
-                                  value="#{usuarioMB.inicio}"
+                                  value="#{usuarioController.inicio}"
                                   pattern="dd/MM/yyyy"
                                   placeholder="Início"
                                   showIcon="true" />
                     <p:spacer width="8"/>
                     <p:datePicker id="dtFim"
-                                  value="#{usuarioMB.fim}"
+                                  value="#{usuarioController.fim}"
                                   pattern="dd/MM/yyyy"
                                   placeholder="Fim"
                                   showIcon="true" />
@@ -58,7 +58,7 @@
                     <p:commandButton value="Filtrar"
                                      icon="pi pi-filter"
                                      process="@this :frm:dtInicio :frm:dtFim"
-                                     actionListener="#{usuarioMB.filtrarPeriodo}"
+                                     actionListener="#{usuarioController.filtrarPeriodo}"
                                      update=":frm:tblUsuarios :frm:growl" />
 
                     <p:spacer width="6"/>
@@ -66,7 +66,7 @@
                     <p:commandButton value="Limpar"
                                      icon="pi pi-times"
                                      process="@this"
-                                     actionListener="#{usuarioMB.limparFiltro}"
+                                     actionListener="#{usuarioController.limparFiltro}"
                                      update=":frm:dtInicio :frm:dtFim :frm:tblUsuarios :frm:growl"
                                      resetValues="true" />
                 </p:toolbarGroup>
@@ -74,7 +74,7 @@
         </p:panel>
 
         <p:dataTable id="tblUsuarios"
-                     value="#{usuarioMB.usuarios}" var="u"
+                     value="#{usuarioController.usuarios}" var="u"
                      paginator="true" rows="10" responsiveLayout="scroll"
                      emptyMessage="Nenhum usuário encontrado.">
 
@@ -103,13 +103,13 @@
             <p:column headerText="Ações" style="width:160px;text-align:center">
                 <p:commandButton icon="pi pi-pencil" title="Editar"
                                  process="@this"
-                                 actionListener="#{usuarioMB.editar(u)}"
+                                 actionListener="#{usuarioController.editar(u)}"
                                  update=":frm:dlgUsuario"
                                  oncomplete="PF('dlgUsuario').show()" />
                 <p:spacer width="6"/>
                 <p:commandButton icon="pi pi-trash" title="Excluir"
                                  process="@this"
-                                 actionListener="#{usuarioMB.excluir(u)}"
+                                 actionListener="#{usuarioController.excluir(u)}"
                                  update=":frm:tblUsuarios :frm:growl" />
             </p:column>
         </p:dataTable>
@@ -127,21 +127,21 @@
             <p:panelGrid columns="2" columnClasses="col1,col2" layout="grid" styleClass="ui-fluid" style="width:100%">
                 <p:outputLabel for="nome" value="Nome"/>
                 <p:inputText id="nome"
-                             value="#{usuarioMB.atual.nome}"
+                             value="#{usuarioController.atual.nome}"
                              required="true"
                              requiredMessage="Informe o nome"
                              maxlength="120"/>
 
                 <p:outputLabel for="email" value="E-mail"/>
                 <p:inputText id="email"
-                             value="#{usuarioMB.atual.email}"
+                             value="#{usuarioController.atual.email}"
                              required="true"
                              requiredMessage="Informe o e-mail"
                              maxlength="150"/>
 
                 <p:outputLabel for="cpf" value="CPF (somente números)"/>
                 <p:inputText id="cpf"
-                             value="#{usuarioMB.atual.cpf}"
+                             value="#{usuarioController.atual.cpf}"
                              required="true"
                              requiredMessage="Informe o CPF"
                              maxlength="11"/>
@@ -151,7 +151,7 @@
 
             <p:commandButton value="Salvar" icon="pi pi-check"
                              process=":frm:dlgUsuario"
-                             actionListener="#{usuarioMB.salvar}"
+                             actionListener="#{usuarioController.salvar}"
                              update=":frm:tblUsuarios :frm:growl"
                              oncomplete="if (!args.validationFailed) PF('dlgUsuario').hide();" />
 
