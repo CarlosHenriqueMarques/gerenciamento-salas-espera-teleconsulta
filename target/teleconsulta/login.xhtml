@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Teleconsulta — Login</title>
+
+    <h:outputStylesheet>
+        :root { --card-w: 420px; }
+        body, html { height: 100%; margin: 0; background: linear-gradient(135deg,#f5f7fa 0%, #e6ecff 100%); }
+        .login-wrap { height: 100%; display: grid; place-items: center; padding: 1.5rem; }
+        .brand { text-align: center; margin-bottom: .5rem; color: #334155; }
+        .brand .logo { width: 56px; height: 56px; display: inline-grid; place-items: center; border-radius: 14px; background: #4f46e5; color: white; font-weight: 700; box-shadow: 0 10px 30px rgba(79,70,229,.25); }
+        .brand h2 { margin: .75rem 0 0 0; font-weight: 700; }
+        .sub { text-align:center; color:#64748b; margin: .25rem 0 1rem 0; }
+        .p-input-icon-left, .p-input-icon-right { width: 100%; }
+        .hint { display:block; text-align:center; color:#64748b; margin-top:.5rem; }
+        .p-password input, .p-inputtext { padding: .85rem .95rem !important; font-size: 1rem; }
+        .p-card { width: var(--card-w); }
+        .field-msg { display:block; margin-top:.25rem; }
+    </h:outputStylesheet>
+</h:head>
+
+<h:body>
+    <div class="login-wrap">
+        <h:form id="frm">
+            <div class="brand">
+                <div class="logo">TC</div>
+                <h2>Teleconsulta</h2>
+                <div class="sub">Acesse sua conta para continuar</div>
+            </div>
+
+            <!-- mensagens globais (topo) -->
+            <p:messages id="msgsLogin" showDetail="true" closable="true" />
+
+            <p:card>
+                <div class="ui-fluid">
+                    <div class="p-field" style="margin-bottom:.75rem">
+                        <span class="p-input-icon-left" style="width:100%">
+                            <i class="pi pi-user" />
+                            <p:inputText id="login"
+                                         value="#{authMB.login}"
+                                         placeholder="Login"
+                                         required="true"
+                                         requiredMessage="Informe o login"
+                                         autocomplete="username" />
+                        </span>
+                        <p:message for="login" id="loginMsg" display="text" styleClass="field-msg"/>
+                    </div>
+
+                    <div class="p-field" style="margin-bottom:.75rem">
+                        <span class="p-input-icon-left" style="width:100%">
+                            <i class="pi pi-lock" />
+                            <p:password id="senha"
+                                        value="#{authMB.senha}"
+                                        placeholder="Senha"
+                                        feedback="false"
+                                        toggleMask="true"
+                                        required="true"
+                                        requiredMessage="Informe a senha"
+                                        autocomplete="current-password" />
+                        </span>
+                        <!-- mensagem por campo -->
+                        <p:message for="senha" id="senhaMsg" display="text" styleClass="field-msg"/>
+                    </div>
+
+                    <p:commandButton id="btnLogin"
+                                     value="Entrar"
+                                     icon="pi pi-sign-in"
+                                     process="@form"
+                                     action="#{authMB.logar}"
+                                     ajax="true"
+                                     update="msgsLogin loginMsg senhaMsg"
+                                     style="width:100%"/>
+                    <small class="hint">Dica: <b>admin</b> / <b>admin</b></small>
+                </div>
+            </p:card>
+
+            <p:defaultCommand target="btnLogin" />
+        </h:form>
+    </div>
+</h:body>
+</html>

@@ -59,6 +59,14 @@
             <version>${sqlite.jdbc.version}</version>
             <scope>runtime</scope>
         </dependency>
+
+        <!-- BCrypt para hash de senhas -->
+        <dependency>
+            <groupId>org.mindrot</groupId>
+            <artifactId>jbcrypt</artifactId>
+            <version>0.4</version>
+        </dependency>
+
     </dependencies>
 
     <build>

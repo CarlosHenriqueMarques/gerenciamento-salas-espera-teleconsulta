@@ -4,26 +4,73 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Teleconsulta - Início</title>
+    <h:outputStylesheet>
+        body { background: #f8fafc; margin:0; }
+        .container { max-width: 980px; margin: 1.25rem auto; padding: 0 1rem; }
+        .topbar { margin-bottom: .75rem; }
+        .menu-card .p-button { margin-bottom: .5rem; }
+    </h:outputStylesheet>
 </h:head>
+
 <h:body>
-    <h:form id="frm">
-        <p:panel header="Teleconsulta — Menu principal" style="max-width: 810px; margin: 2rem auto;">
-            <p:card style="margin-top:0.3rem">
-                <!--<p:toolbar> -->
+    <div class="container">
+        <h:form id="frm">
+
+            <!-- Topbar com saudação e Sair (lado direito) -->
+            <div class="topbar">
+                <p:toolbar>
                     <p:toolbarGroup>
-                        <p:linkButton value="Usuários" icon="pi pi-users" outcome="/usuarios.xhtml" styleClass="p-button p-button-raised p-button-lg" />
-                        <p:spacer width="8" />
-                        <p:linkButton value="Pacientes" icon="pi pi-id-card" outcome="/pacientes.xhtml" styleClass="p-button p-button-raised p-button-lg" />
-                        <p:spacer width="8" />
-                        <p:linkButton value="Unidades de Saúde" icon="pi pi-building" outcome="/unidades.xhtml" styleClass="p-button p-button-raised p-button-lg" />
-                        <p:spacer width="8" />
-                        <p:linkButton value="Salas"  icon="pi pi-sitemap" outcome="/salas.xhtml"  styleClass="p-button p-button-raised p-button-lg" />
-                        <p:spacer width="8" />
-                        <p:linkButton value="Reservas" icon="pi pi-calendar-plus" outcome="/reservas.xhtml"/>
+                        <h:outputText value="Teleconsulta" style="font-weight:600;color:#334155;font-size:1.1rem"/>
                     </p:toolbarGroup>
-                <!-- </p:toolbar>-->
-            </p:card>
-        </p:panel>
-    </h:form>
+
+                    <p:toolbarGroup align="right">
+                        <h:panelGroup rendered="#{authMB.logado}">
+                            <h:outputText value="Olá, #{authMB.contaLogada.login}" style="color:#475569"/>
+                            <p:spacer width="8"/>
+                            <p:commandButton value="Sair"
+                                             icon="pi pi-sign-out"
+                                             actionListener="#{authMB.logout}"
+                                             ajax="false"
+                                             styleClass="p-button-outlined p-button-danger" />
+                        </h:panelGroup>
+                    </p:toolbarGroup>
+                </p:toolbar>
+            </div>
+
+            <p:panel header="Teleconsulta — Menu principal" style="margin-top:.5rem">
+                <p:card styleClass="menu-card">
+                    <p:toolbar>
+                        <p:toolbarGroup>
+                            <p:linkButton value="Usuários"
+                                          icon="pi pi-users"
+                                          outcome="/usuarios.xhtml"
+                                          styleClass="p-button p-button-raised p-button-lg" />
+                            <p:spacer width="8" />
+                            <p:linkButton value="Pacientes"
+                                          icon="pi pi-id-card"
+                                          outcome="/pacientes.xhtml"
+                                          styleClass="p-button p-button-raised p-button-lg" />
+                            <p:spacer width="8" />
+                            <p:linkButton value="Unidades de Saúde"
+                                          icon="pi pi-building"
+                                          outcome="/unidades.xhtml"
+                                          styleClass="p-button p-button-raised p-button-lg" />
+                            <p:spacer width="8" />
+                            <p:linkButton value="Salas"
+                                          icon="pi pi-sitemap"
+                                          outcome="/salas.xhtml"
+                                          styleClass="p-button p-button-raised p-button-lg" />
+                            <p:spacer width="8" />
+                            <p:linkButton value="Reservas"
+                                          icon="pi pi-calendar-plus"
+                                          outcome="/reservas.xhtml"
+                                          styleClass="p-button p-button-raised p-button-lg" />
+                        </p:toolbarGroup>
+                    </p:toolbar>
+                </p:card>
+            </p:panel>
+
+        </h:form>
+    </div>
 </h:body>
 </html>
