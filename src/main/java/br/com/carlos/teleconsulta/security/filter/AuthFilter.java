@@ -1,4 +1,4 @@
-package br.com.carlos.teleconsulta.web;
+package br.com.carlos.teleconsulta.security.filter;
 
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;

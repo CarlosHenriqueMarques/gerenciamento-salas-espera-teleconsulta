@@ -5,10 +5,11 @@ br\com\carlos\teleconsulta\domain\enums\Perfil.class
 br\com\carlos\teleconsulta\domain\enums\Sexo.class
 br\com\carlos\teleconsulta\service\UsuarioService.class
 br\com\carlos\teleconsulta\web\SalaMB.class
+br\com\carlos\teleconsulta\security\filter\AuthFilter.class
 br\com\carlos\teleconsulta\service\ContaService.class
 br\com\carlos\teleconsulta\service\PasswordService.class
 br\com\carlos\teleconsulta\service\SalaService.class
-br\com\carlos\teleconsulta\web\AuthFilter.class
+br\com\carlos\teleconsulta\security\controller\AuthMB.class
 br\com\carlos\teleconsulta\service\UnidadeSaudeService.class
 br\com\carlos\teleconsulta\web\UnidadeSaudeMB.class
 br\com\carlos\teleconsulta\domain\Conta.class
@@ -21,4 +22,3 @@ br\com\carlos\teleconsulta\service\ReservaService.class
 br\com\carlos\teleconsulta\domain\Usuario.class
 br\com\carlos\teleconsulta\domain\Reserva.class
 br\com\carlos\teleconsulta\web\ReservaMB.class
-br\com\carlos\teleconsulta\web\AuthMB.class

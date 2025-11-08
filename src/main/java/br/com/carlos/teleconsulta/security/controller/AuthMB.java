@@ -1,4 +1,4 @@
-package br.com.carlos.teleconsulta.web;
+package br.com.carlos.teleconsulta.security.controller;
 
 import br.com.carlos.teleconsulta.domain.Conta;
 import br.com.carlos.teleconsulta.domain.enums.Perfil;

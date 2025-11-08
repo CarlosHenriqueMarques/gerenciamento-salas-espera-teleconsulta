@@ -7,6 +7,8 @@ C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\t
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\domain\Sala.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\domain\UnidadeSaude.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\domain\Usuario.java
+C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\security\controller\AuthMB.java
+C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\security\filter\AuthFilter.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\service\ContaService.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\service\PacienteService.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\service\PasswordService.java
@@ -15,8 +17,6 @@ C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\t
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\service\UnidadeSaudeService.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\service\UsuarioService.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\startup\StartupSeed.java
-C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\AuthFilter.java
-C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\AuthMB.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\PacienteMB.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\ReservaMB.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\SalaMB.java
