@@ -17,11 +17,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-@Named("salaMB")
+@Named("salaController")
 @ViewScoped
-public class SalaMB implements Serializable {
+public class SalaController implements Serializable {
 
-    private static final Logger LOG = Logger.getLogger(SalaMB.class.getName());
+    private static final Logger LOG = Logger.getLogger(SalaController.class.getName());
 
     @Inject
     private SalaService salaService;
@@ -49,15 +49,15 @@ public class SalaMB implements Serializable {
             if (unidadeService != null) {
                 unidades = unidadeService.listarTodos();
             } else {
-                LOG.warning("unidadeService está null no init() de SalaMB");
+                LOG.warning("unidadeService está null no init() de SalaController");
             }
             if (salaService != null) {
                 salas = salaService.listarTodos();
             } else {
-                LOG.warning("salaService está null no init() de SalaMB");
+                LOG.warning("salaService está null no init() de SalaController");
             }
         } catch (Exception e) {
-            LOG.log(Level.SEVERE, "Falha ao inicializar SalaMB", e);
+            LOG.log(Level.SEVERE, "Falha ao inicializar SalaController", e);
             addMsg(FacesMessage.SEVERITY_ERROR, "Falha ao carregar dados de Salas: " + e.getMessage());
         }
     }

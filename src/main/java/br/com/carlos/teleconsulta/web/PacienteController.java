@@ -15,9 +15,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-@Named("pacienteMB")
+@Named("pacienteController")
 @ViewScoped
-public class PacienteMB implements Serializable {
+public class PacienteController implements Serializable {
 
     @Inject
     private PacienteService service;

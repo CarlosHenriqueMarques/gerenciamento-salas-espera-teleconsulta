@@ -17,8 +17,8 @@ C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\t
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\service\UnidadeSaudeService.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\service\UsuarioService.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\startup\StartupSeed.java
-C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\PacienteMB.java
+C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\PacienteController.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\ReservaMB.java
-C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\SalaMB.java
-C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\UnidadeSaudeMB.java
+C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\SalaController.java
+C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\UnidadeSaudeController.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\UsuarioController.java

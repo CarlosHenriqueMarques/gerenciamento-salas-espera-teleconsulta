@@ -13,9 +13,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-@Named("unidadeMB")
+@Named("unidadeSaudeController")
 @ViewScoped
-public class UnidadeSaudeMB implements Serializable {
+public class UnidadeSaudeController implements Serializable {
 
     @Inject
     private UnidadeSaudeService service;

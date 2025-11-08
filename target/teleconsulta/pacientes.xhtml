@@ -35,21 +35,21 @@
                     <p:commandButton value="Novo"
                                      icon="pi pi-plus"
                                      process="@this"
-                                     actionListener="#{pacienteMB.novo}"
+                                     actionListener="#{pacienteController.novo}"
                                      update=":frm:dlgPaciente"
                                      oncomplete="PF('dlgPaciente').show()"/>
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
 
                     <p:inputText id="termo"
-                                 value="#{pacienteMB.termo}"
+                                 value="#{pacienteController.termo}"
                                  placeholder="Buscar: nome, doc, e-mail, tel"
                                  style="width:22rem"/>
 
                     <p:spacer width="6"/>
 
                     <p:datePicker id="nascIni"
-                                  value="#{pacienteMB.nascIni}"
+                                  value="#{pacienteController.nascIni}"
                                   pattern="dd/MM/yyyy"
                                   showIcon="true"
                                   placeholder="Nascimento: de"/>
@@ -57,7 +57,7 @@
                     <p:spacer width="6"/>
 
                     <p:datePicker id="nascFim"
-                                  value="#{pacienteMB.nascFim}"
+                                  value="#{pacienteController.nascFim}"
                                   pattern="dd/MM/yyyy"
                                   showIcon="true"
                                   placeholder="até"/>
@@ -66,14 +66,14 @@
 
                     <p:commandButton value="Filtrar" icon="pi pi-filter"
                                      process="@this termo nascIni nascFim"
-                                     actionListener="#{pacienteMB.filtrar}"
+                                     actionListener="#{pacienteController.filtrar}"
                                      update=":frm:tblPacientes :frm:growl"/>
 
                     <p:spacer width="6"/>
 
                     <p:commandButton value="Limpar" icon="pi pi-times"
                                      process="@this"
-                                     actionListener="#{pacienteMB.limparFiltro}"
+                                     actionListener="#{pacienteController.limparFiltro}"
                                      update=":frm:tblPacientes :frm:growl :frm:termo :frm:nascIni :frm:nascFim"
                                      resetValues="true"/>
                 </p:toolbarGroup>
@@ -81,7 +81,7 @@
             </p:toolbar>
         </p:panel>
 
-        <p:dataTable id="tblPacientes" value="#{pacienteMB.pacientes}" var="p"
+        <p:dataTable id="tblPacientes" value="#{pacienteController.pacientes}" var="p"
                      paginator="true" rows="10" responsiveLayout="scroll"
                      emptyMessage="Nenhum paciente encontrado.">
 
@@ -122,13 +122,13 @@
             <p:column headerText="Ações" style="width:160px;text-align:center">
                 <p:commandButton icon="pi pi-pencil" title="Editar"
                                  process="@this"
-                                 actionListener="#{pacienteMB.editar(p)}"
+                                 actionListener="#{pacienteController.editar(p)}"
                                  update=":frm:dlgPaciente"
                                  oncomplete="PF('dlgPaciente').show()"/>
                 <p:spacer width="6"/>
                 <p:commandButton icon="pi pi-trash" title="Excluir"
                                  process="@this"
-                                 actionListener="#{pacienteMB.excluir(p)}"
+                                 actionListener="#{pacienteController.excluir(p)}"
                                  update=":frm:tblPacientes :frm:growl"/>
             </p:column>
         </p:dataTable>
@@ -138,50 +138,50 @@
 
             <p:panelGrid columns="2" columnClasses="col1,col2" layout="grid" styleClass="ui-fluid" style="width:90%">
                 <p:outputLabel for="nome" value="Nome"/>
-                <p:inputText id="nome" value="#{pacienteMB.atual.nome}" required="true" maxlength="120"/>
+                <p:inputText id="nome" value="#{pacienteController.atual.nome}" required="true" maxlength="120"/>
 
                 <p:outputLabel for="nomeSocial" value="Nome social"/>
-                <p:inputText id="nomeSocial" value="#{pacienteMB.atual.nomeSocial}" maxlength="120"/>
+                <p:inputText id="nomeSocial" value="#{pacienteController.atual.nomeSocial}" maxlength="120"/>
 
                 <p:outputLabel for="sexo" value="Sexo"/>
-                <p:selectOneMenu id="sexo" value="#{pacienteMB.atual.sexo}" style="width:100%">
+                <p:selectOneMenu id="sexo" value="#{pacienteController.atual.sexo}" style="width:100%">
                     <f:selectItem itemLabel="(selecione)" itemValue="#{null}"/>
-                    <f:selectItems value="#{pacienteMB.sexos}" var="s" itemValue="#{s}" itemLabel="#{s}"/>
+                    <f:selectItems value="#{pacienteController.sexos}" var="s" itemValue="#{s}" itemLabel="#{s}"/>
                 </p:selectOneMenu>
 
                 <p:outputLabel for="nasc" value="Nascimento"/>
-                <p:datePicker id="nasc" value="#{pacienteMB.atual.dataNascimento}" pattern="dd/MM/yyyy" showIcon="true"/>
+                <p:datePicker id="nasc" value="#{pacienteController.atual.dataNascimento}" pattern="dd/MM/yyyy" showIcon="true"/>
 
                 <p:outputLabel for="nomeMae" value="Nome da mãe"/>
-                <p:inputText id="nomeMae" value="#{pacienteMB.atual.nomeMae}" maxlength="120"/>
+                <p:inputText id="nomeMae" value="#{pacienteController.atual.nomeMae}" maxlength="120"/>
 
                 <p:outputLabel for="nomePai" value="Nome do pai"/>
-                <p:inputText id="nomePai" value="#{pacienteMB.atual.nomePai}" maxlength="120"/>
+                <p:inputText id="nomePai" value="#{pacienteController.atual.nomePai}" maxlength="120"/>
 
                 <p:outputLabel for="telefone" value="Telefone"/>
-                <p:inputText id="telefone" value="#{pacienteMB.atual.telefone}" maxlength="20"/>
+                <p:inputText id="telefone" value="#{pacienteController.atual.telefone}" maxlength="20"/>
 
                 <p:outputLabel for="email" value="E-mail"/>
-                <p:inputText id="email" value="#{pacienteMB.atual.email}" maxlength="150"/>
+                <p:inputText id="email" value="#{pacienteController.atual.email}" maxlength="150"/>
 
                 <p:outputLabel for="cpf" value="CPF (11 dígitos)"/>
-                <p:inputText id="cpf" value="#{pacienteMB.atual.cpf}" maxlength="11"/>
+                <p:inputText id="cpf" value="#{pacienteController.atual.cpf}" maxlength="11"/>
 
                 <p:outputLabel for="rg" value="RG"/>
-                <p:inputText id="rg" value="#{pacienteMB.atual.rg}" maxlength="20"/>
+                <p:inputText id="rg" value="#{pacienteController.atual.rg}" maxlength="20"/>
 
                 <p:outputLabel for="cns" value="CNS (15 dígitos)"/>
-                <p:inputText id="cns" value="#{pacienteMB.atual.cns}" maxlength="15"/>
+                <p:inputText id="cns" value="#{pacienteController.atual.cns}" maxlength="15"/>
 
                 <p:outputLabel for="endereco" value="Endereço"/>
-                <p:inputTextarea id="endereco" value="#{pacienteMB.atual.endereco}" maxlength="255" autoResize="true" rows="2"/>
+                <p:inputTextarea id="endereco" value="#{pacienteController.atual.endereco}" maxlength="255" autoResize="true" rows="2"/>
             </p:panelGrid>
 
             <p:separator/>
 
             <p:commandButton value="Salvar" icon="pi pi-check"
                              process="@this, nome, nomeSocial, sexo, nasc, nomeMae, nomePai, telefone, email, cpf, rg, cns, endereco"
-                             actionListener="#{pacienteMB.salvar}"
+                             actionListener="#{pacienteController.salvar}"
                              update=":frm:tblPacientes :frm:growl"
                              oncomplete="if (!args.validationFailed) PF('dlgPaciente').hide();" />
             <p:spacer width="8"/>

@@ -32,18 +32,18 @@
                 <p:toolbarGroup>
                     <p:commandButton value="Novo" icon="pi pi-plus"
                                      process="@this"
-                                     actionListener="#{salaMB.novo}"
+                                     actionListener="#{salaController.novo}"
                                      update=":frm:dlgSala"
                                      oncomplete="PF('dlgSala').show()" />
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
-                    <p:inputText id="termo" value="#{salaMB.termo}"
+                    <p:inputText id="termo" value="#{salaController.termo}"
                                  placeholder="Nome da sala" style="width:18rem"/>
                     <p:spacer width="6"/>
 
-                    <p:selectOneMenu id="unidadeFiltro" value="#{salaMB.unidadeFiltroId}" style="width:18rem">
+                    <p:selectOneMenu id="unidadeFiltro" value="#{salaController.unidadeFiltroId}" style="width:18rem">
                         <f:selectItem itemLabel="(todas as unidades)" itemValue="#{null}"/>
-                        <f:selectItems value="#{salaMB.unidades}" var="u"
+                        <f:selectItems value="#{salaController.unidades}" var="u"
                                        itemValue="#{u.id}" itemLabel="#{u.nome}"/>
                     </p:selectOneMenu>
 
@@ -51,19 +51,19 @@
 
                     <p:commandButton value="Filtrar" icon="pi pi-filter"
                                      process="@this termo unidadeFiltro"
-                                     actionListener="#{salaMB.filtrar}"
+                                     actionListener="#{salaController.filtrar}"
                                      update=":frm:tblSalas :frm:growl"/>
                     <p:spacer width="6"/>
                     <p:commandButton value="Limpar" icon="pi pi-times"
                                      process="@this"
-                                     actionListener="#{salaMB.limparFiltro}"
+                                     actionListener="#{salaController.limparFiltro}"
                                      update=":frm:tblSalas :frm:growl :frm:termo :frm:unidadeFiltro"
                                      resetValues="true"/>
                 </p:toolbarGroup>
             </p:toolbar>
         </p:panel>
 
-        <p:dataTable id="tblSalas" value="#{salaMB.salas}" var="s"
+        <p:dataTable id="tblSalas" value="#{salaController.salas}" var="s"
                      paginator="true" rows="10" responsiveLayout="scroll"
                      emptyMessage="Nenhuma sala encontrada.">
 
@@ -92,13 +92,13 @@
             <p:column headerText="Ações" style="width:160px;text-align:center">
                 <p:commandButton icon="pi pi-pencil" title="Editar"
                                  process="@this"
-                                 actionListener="#{salaMB.editar(s)}"
+                                 actionListener="#{salaController.editar(s)}"
                                  update=":frm:dlgSala"
                                  oncomplete="PF('dlgSala').show()"/>
                 <p:spacer width="6"/>
                 <p:commandButton icon="pi pi-trash" title="Excluir"
                                  process="@this"
-                                 actionListener="#{salaMB.excluir(s)}"
+                                 actionListener="#{salaController.excluir(s)}"
                                  update=":frm:tblSalas :frm:growl"/>
             </p:column>
         </p:dataTable>
@@ -110,16 +110,16 @@
                          layout="grid" styleClass="ui-fluid" style="width:100%">
 
                 <p:outputLabel for="nome" value="Nome"/>
-                <p:inputText id="nome" value="#{salaMB.atual.nome}" required="true" maxlength="120"/>
+                <p:inputText id="nome" value="#{salaController.atual.nome}" required="true" maxlength="120"/>
 
                 <p:outputLabel for="capacidade" value="Capacidade"/>
-                <p:inputNumber id="capacidade" value="#{salaMB.atual.capacidade}"
+                <p:inputNumber id="capacidade" value="#{salaController.atual.capacidade}"
                                decimalPlaces="0" minValue="1"  maxValue="99" required="true" />
 
                 <p:outputLabel for="unidadeSel" value="Unidade de Saúde"/>
-                <p:selectOneMenu id="unidadeSel" value="#{salaMB.unidadeSelId}" required="true" style="width:100%">
+                <p:selectOneMenu id="unidadeSel" value="#{salaController.unidadeSelId}" required="true" style="width:100%">
                     <f:selectItem itemLabel="(selecione)" itemValue="#{null}"/>
-                    <f:selectItems value="#{salaMB.unidades}" var="u"
+                    <f:selectItems value="#{salaController.unidades}" var="u"
                                    itemValue="#{u.id}" itemLabel="#{u.nome}"/>
                 </p:selectOneMenu>
             </p:panelGrid>
@@ -128,7 +128,7 @@
 
             <p:commandButton value="Salvar" icon="pi pi-check"
                              process="@this, nome, capacidade, unidadeSel"
-                             actionListener="#{salaMB.salvar}"
+                             actionListener="#{salaController.salvar}"
                              update=":frm:tblSalas :frm:growl"
                              oncomplete="if (!args.validationFailed) PF('dlgSala').hide();"/>
             <p:spacer width="8"/>

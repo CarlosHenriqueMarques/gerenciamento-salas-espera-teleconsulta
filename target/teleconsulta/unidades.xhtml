@@ -36,15 +36,14 @@
                     <p:commandButton value="Novo"
                                      icon="pi pi-plus"
                                      process="@this"
-                                     actionListener="#{unidadeMB.novo}"
+                                     actionListener="#{unidadeSaudeController.novo}"
                                      update=":frm:dlgUnidade"
                                      oncomplete="PF('dlgUnidade').show()" />
                 </p:toolbarGroup>
 
                 <p:toolbarGroup align="right">
-                    <!-- dê um ID para poder processar -->
                     <p:inputText id="termo"
-                                 value="#{unidadeMB.filtro}"
+                                 value="#{unidadeSaudeController.filtro}"
                                  placeholder="Nome / Razão social / Sigla"
                                  style="width:22rem" />
 
@@ -52,21 +51,21 @@
 
                     <p:commandButton value="Filtrar" icon="pi pi-filter"
                                      process="@this termo"
-                                     actionListener="#{unidadeMB.filtrar}"
+                                     actionListener="#{unidadeSaudeController.filtrar}"
                                      update=":frm:tblUnidades :frm:growl" />
 
                     <p:spacer width="6"/>
 
                     <p:commandButton value="Limpar" icon="pi pi-times"
                                      process="@this"
-                                     actionListener="#{unidadeMB.limparFiltro}"
+                                     actionListener="#{unidadeSaudeController.limparFiltro}"
                                      update=":frm:tblUnidades :frm:growl :frm:termo"
                                      resetValues="true"/>
                 </p:toolbarGroup>
             </p:toolbar>
         </p:panel>
 
-        <p:dataTable id="tblUnidades" value="#{unidadeMB.unidades}" var="u"
+        <p:dataTable id="tblUnidades" value="#{unidadeSaudeController.unidades}" var="u"
                      paginator="true" rows="10" responsiveLayout="scroll"
                      emptyMessage="Nenhuma unidade encontrada.">
 
@@ -103,13 +102,13 @@
             <p:column headerText="Ações" style="width:160px;text-align:center">
                 <p:commandButton icon="pi pi-pencil" title="Editar"
                                  process="@this"
-                                 actionListener="#{unidadeMB.editar(u)}"
+                                 actionListener="#{unidadeSaudeController.editar(u)}"
                                  update=":frm:dlgUnidade"
                                  oncomplete="PF('dlgUnidade').show()" />
                 <p:spacer width="6"/>
                 <p:commandButton icon="pi pi-trash" title="Excluir"
                                  process="@this"
-                                 actionListener="#{unidadeMB.excluir(u)}"
+                                 actionListener="#{unidadeSaudeController.excluir(u)}"
                                  update=":frm:tblUnidades :frm:growl" />
             </p:column>
         </p:dataTable>
@@ -122,26 +121,26 @@
                          layout="grid" styleClass="ui-fluid" style="width:100%">
 
                 <p:outputLabel for="nome" value="Nome"/>
-                <p:inputText id="nome" value="#{unidadeMB.atual.nome}" required="true" maxlength="120" />
+                <p:inputText id="nome" value="#{unidadeSaudeController.atual.nome}" required="true" maxlength="120" />
 
                 <p:outputLabel for="razao" value="Razão Social"/>
-                <p:inputText id="razao" value="#{unidadeMB.atual.razaoSocial}" required="true" maxlength="150" />
+                <p:inputText id="razao" value="#{unidadeSaudeController.atual.razaoSocial}" required="true" maxlength="150" />
 
                 <p:outputLabel for="sigla" value="Sigla"/>
-                <p:inputText id="sigla" value="#{unidadeMB.atual.sigla}" required="true" maxlength="20" />
+                <p:inputText id="sigla" value="#{unidadeSaudeController.atual.sigla}" required="true" maxlength="20" />
 
                 <p:outputLabel for="cnpj" value="CNPJ (14 dígitos)"/>
-                <p:inputText id="cnpj" value="#{unidadeMB.atual.cnpj}" required="true" maxlength="14" />
+                <p:inputText id="cnpj" value="#{unidadeSaudeController.atual.cnpj}" required="true" maxlength="14" />
 
                 <p:outputLabel for="cnes" value="CNES (7 dígitos)"/>
-                <p:inputText id="cnes" value="#{unidadeMB.atual.cnes}" required="true" maxlength="7" />
+                <p:inputText id="cnes" value="#{unidadeSaudeController.atual.cnes}" required="true" maxlength="7" />
             </p:panelGrid>
 
             <p:separator/>
 
             <p:commandButton value="Salvar" icon="pi pi-check"
                              process="@this, nome, razao, sigla, cnpj, cnes"
-                             actionListener="#{unidadeMB.salvar}"
+                             actionListener="#{unidadeSaudeController.salvar}"
                              update=":frm:tblUnidades :frm:growl"
                              oncomplete="if (!args.validationFailed) PF('dlgUnidade').hide();" />
             <p:spacer width="8"/>
