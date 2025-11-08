@@ -35,7 +35,7 @@
                 <p:toolbarGroup>
                     <p:commandButton value="Nova reserva" icon="pi pi-plus"
                                      process="@this"
-                                     actionListener="#{reservaMB.novo}"
+                                     actionListener="#{reservaController.novo}"
                                      update=":frm:dlgReserva"
                                      oncomplete="PF('dlgReserva').show()"/>
                 </p:toolbarGroup>
@@ -43,35 +43,35 @@
                 <p:toolbarGroup align="right">
 
                     <p:datePicker id="ini"
-                                  value="#{reservaMB.filtroIni}"
+                                  value="#{reservaController.filtroIni}"
                                   pattern="dd/MM/yyyy HH:mm"
                                   showTime="true" showIcon="true"
                                   placeholder="Início"/>
                     <p:spacer width="6"/>
 
                     <p:datePicker id="fim"
-                                  value="#{reservaMB.filtroFim}"
+                                  value="#{reservaController.filtroFim}"
                                   pattern="dd/MM/yyyy HH:mm"
                                   showTime="true" showIcon="true"
                                   placeholder="Término"/>
                     <p:spacer width="6"/>
 
-                    <p:selectOneMenu id="unidadeFiltro" value="#{reservaMB.unidadeFiltroId}">
+                    <p:selectOneMenu id="unidadeFiltro" value="#{reservaController.unidadeFiltroId}">
                         <f:selectItem itemLabel="(todas as unidades)" itemValue="#{null}"/>
-                        <f:selectItems value="#{reservaMB.unidades}" var="u" itemValue="#{u.id}" itemLabel="#{u.nome}"/>
-                        <p:ajax listener="#{reservaMB.onTrocaUnidadeFiltro}" update="salaFiltro"/>
+                        <f:selectItems value="#{reservaController.unidades}" var="u" itemValue="#{u.id}" itemLabel="#{u.nome}"/>
+                        <p:ajax listener="#{reservaController.onTrocaUnidadeFiltro}" update="salaFiltro"/>
                     </p:selectOneMenu>
                     <p:spacer width="6"/>
 
-                    <p:selectOneMenu id="salaFiltro" value="#{reservaMB.salaFiltroId}">
+                    <p:selectOneMenu id="salaFiltro" value="#{reservaController.salaFiltroId}">
                         <f:selectItem itemLabel="(todas as salas)" itemValue="#{null}"/>
-                        <f:selectItems value="#{reservaMB.salasDaUnidade}" var="s" itemValue="#{s.id}" itemLabel="#{s.nome}"/>
+                        <f:selectItems value="#{reservaController.salasDaUnidade}" var="s" itemValue="#{s.id}" itemLabel="#{s.nome}"/>
                     </p:selectOneMenu>
                     <p:spacer width="6"/>
 
-                    <p:selectOneMenu id="usuarioFiltro" value="#{reservaMB.usuarioFiltroId}" style="width:18rem">
+                    <p:selectOneMenu id="usuarioFiltro" value="#{reservaController.usuarioFiltroId}" style="width:18rem">
                         <f:selectItem itemLabel="(todos usuários)" itemValue="#{null}"/>
-                        <f:selectItems value="#{reservaMB.usuarios}" var="usr"
+                        <f:selectItems value="#{reservaController.usuarios}" var="usr"
                                        itemValue="#{usr.id}" itemLabel="#{usr.nome}"/>
                     </p:selectOneMenu>
 
@@ -79,19 +79,19 @@
 
                     <p:commandButton value="Filtrar" icon="pi pi-filter"
                                      process="@this :frm:ini :frm:fim :frm:unidadeFiltro :frm:salaFiltro :frm:usuarioFiltro"
-                                     actionListener="#{reservaMB.filtrar}"
+                                     actionListener="#{reservaController.filtrar}"
                                      update=":frm:tblReservas :frm:growl"/>
                     <p:spacer width="6"/>
                     <p:commandButton value="Limpar" icon="pi pi-times"
                                      process="@this"
-                                     actionListener="#{reservaMB.limparFiltro}"
+                                     actionListener="#{reservaController.limparFiltro}"
                                      update=":frm:tblReservas :frm:growl :frm:ini :frm:fim :frm:unidadeFiltro :frm:salaFiltro :frm:usuarioFiltro"
                                      resetValues="true"/>
                 </p:toolbarGroup>
             </p:toolbar>
         </p:panel>
 
-        <p:dataTable id="tblReservas" value="#{reservaMB.reservas}" var="r"
+        <p:dataTable id="tblReservas" value="#{reservaController.reservas}" var="r"
                      paginator="true" rows="10" responsiveLayout="scroll"
                      emptyMessage="Nenhuma reserva encontrada.">
 
@@ -128,13 +128,13 @@
             <p:column headerText="Ações" style="width:160px;text-align:center">
                 <p:commandButton icon="pi pi-pencil" title="Editar"
                                  process="@this"
-                                 actionListener="#{reservaMB.editar(r)}"
+                                 actionListener="#{reservaController.editar(r)}"
                                  update=":frm:dlgReserva"
                                  oncomplete="PF('dlgReserva').show()"/>
                 <p:spacer width="6"/>
                 <p:commandButton icon="pi pi-trash" title="Excluir"
                                  process="@this"
-                                 actionListener="#{reservaMB.excluir(r)}"
+                                 actionListener="#{reservaController.excluir(r)}"
                                  update=":frm:tblReservas :frm:growl"/>
             </p:column>
         </p:dataTable>
@@ -147,39 +147,39 @@
 
                 <p:outputLabel for="iniSel" value="Início"/>
                 <p:datePicker id="iniSel"
-                              value="#{reservaMB.atual.inicio}"
+                              value="#{reservaController.atual.inicio}"
                               pattern="dd/MM/yyyy HH:mm"
                               showTime="true" showIcon="true" required="true"/>
 
                 <p:outputLabel for="fimSel" value="Término"/>
                 <p:datePicker id="fimSel"
-                              value="#{reservaMB.atual.fim}"
+                              value="#{reservaController.atual.fim}"
                               pattern="dd/MM/yyyy HH:mm"
                               showTime="true" showIcon="true" required="true"/>
 
                 <p:outputLabel for="unidadeSel" value="Unidade de Saúde"/>
-                <p:selectOneMenu id="unidadeSel" value="#{reservaMB.unidadeSelId}" style="width:100%" required="true">
+                <p:selectOneMenu id="unidadeSel" value="#{reservaController.unidadeSelId}" style="width:100%" required="true">
                     <f:selectItem itemLabel="(selecione)" itemValue="#{null}"/>
-                    <f:selectItems value="#{reservaMB.unidades}" var="u"
+                    <f:selectItems value="#{reservaController.unidades}" var="u"
                                    itemValue="#{u.id}" itemLabel="#{u.nome}"/>
-                    <p:ajax listener="#{reservaMB.onTrocaUnidadeSel}"
+                    <p:ajax listener="#{reservaController.onTrocaUnidadeSel}"
                             update=":frm:salaSel"/>
                 </p:selectOneMenu>
 
                 <p:outputLabel for="salaSel" value="Sala"/>
-                <p:selectOneMenu id="salaSel" value="#{reservaMB.salaSelId}" style="width:100%" required="true">
+                <p:selectOneMenu id="salaSel" value="#{reservaController.salaSelId}" style="width:100%" required="true">
                     <f:selectItem itemLabel="(selecione)" itemValue="#{null}"/>
-                    <f:selectItems value="#{reservaMB.salasDaUnidadeSel}" var="s"
+                    <f:selectItems value="#{reservaController.salasDaUnidadeSel}" var="s"
                                    itemValue="#{s.id}" itemLabel="#{s.nome}"/>
                 </p:selectOneMenu>
 
                 <p:outputLabel for="usuariosSel" value="Usuários"/>
                 <p:selectCheckboxMenu id="usuariosSel"
-                                      value="#{reservaMB.usuarioSelIds}"
+                                      value="#{reservaController.usuarioSelIds}"
                                       label="Selecione usuários"
                                       filter="true" multiple="true" required="true"
                                       panelStyle="max-height:220px; overflow:auto">
-                    <f:selectItems value="#{reservaMB.usuarios}" var="usr"
+                    <f:selectItems value="#{reservaController.usuarios}" var="usr"
                                    itemValue="#{usr.id}" itemLabel="#{usr.nome}"/>
                 </p:selectCheckboxMenu>
             </p:panelGrid>
@@ -188,7 +188,7 @@
 
             <p:commandButton value="Salvar" icon="pi pi-check"
                              process="@this, iniSel, fimSel, unidadeSel, salaSel, usuariosSel"
-                             actionListener="#{reservaMB.salvar}"
+                             actionListener="#{reservaController.salvar}"
                              update=":frm:tblReservas :frm:growl"
                              oncomplete="if (!args.validationFailed) PF('dlgReserva').hide();"/>
             <p:spacer width="8"/>

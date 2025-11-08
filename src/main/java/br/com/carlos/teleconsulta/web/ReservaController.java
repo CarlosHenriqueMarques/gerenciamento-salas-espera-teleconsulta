@@ -14,33 +14,30 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Named("reservaMB")
+@Named("reservaController")
 @ViewScoped
-public class ReservaMB implements Serializable {
+public class ReservaController implements Serializable {
 
     @Inject private ReservaService reservaService;
     @Inject private SalaService salaService;
     @Inject private UnidadeSaudeService unidadeService;
     @Inject private UsuarioService usuarioService;
 
-    // Listagens
     private List<Reserva> reservas = new ArrayList<>();
     private List<UnidadeSaude> unidades = new ArrayList<>();
-    private List<Sala> salasDaUnidade = new ArrayList<>();      // usado no filtro (topo da página)
-    private List<Sala> salasDaUnidadeSel = new ArrayList<>();   // usado no diálogo (seleção)
+    private List<Sala> salasDaUnidade = new ArrayList<>();
+    private List<Sala> salasDaUnidadeSel = new ArrayList<>();
     private List<Usuario> usuarios = new ArrayList<>();
 
-    // Entidade em edição
+
     private Reserva atual = new Reserva();
 
-    // Filtros (topo)
     private LocalDateTime filtroIni;
     private LocalDateTime filtroFim;
     private Long unidadeFiltroId;
     private Long salaFiltroId;
     private Long usuarioFiltroId;
 
-    // Seleção no diálogo
     private Long unidadeSelId;
     private Long salaSelId;
     private List<Long> usuarioSelIds = new ArrayList<>();
@@ -51,7 +48,6 @@ public class ReservaMB implements Serializable {
         try { usuarios = usuarioService.listarTodos(); } catch (Exception ignored) {}
         try { reservas = reservaService.listarTodos(); } catch (Exception ignored) {}
 
-        // <<< carregar TODAS as salas para o filtro ao abrir a tela
         try { salasDaUnidade = salaService.listarTodos(); } catch (Exception e) { salasDaUnidade = new ArrayList<>(); }
 
         salasDaUnidadeSel = new ArrayList<>();
@@ -148,7 +144,6 @@ public class ReservaMB implements Serializable {
         salaFiltroId = null;
         usuarioFiltroId = null;
 
-        // <<< restaurar TODAS as salas no combo de filtro
         try { salasDaUnidade = salaService.listarTodos(); } catch (Exception e) { salasDaUnidade = new ArrayList<>(); }
 
         reservas = reservaService.listarTodos();
@@ -158,7 +153,6 @@ public class ReservaMB implements Serializable {
         if (unidadeFiltroId != null) {
             salasDaUnidade = salaService.listarPorUnidade(unidadeFiltroId);
         } else {
-            // <<< se não há unidade selecionada, mostrar TODAS as salas
             try { salasDaUnidade = salaService.listarTodos(); } catch (Exception e) { salasDaUnidade = new ArrayList<>(); }
         }
         salaFiltroId = null;
@@ -173,16 +167,11 @@ public class ReservaMB implements Serializable {
         salaSelId = null;
     }
 
-    /* =========================
-       Util
-       ========================= */
+
     private void addMsg(FacesMessage.Severity s, String m) {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(s, m, null));
     }
 
-    /* =========================
-       Getters / Setters (EL)
-       ========================= */
     public List<Reserva> getReservas() { return reservas; }
     public Reserva getAtual() { return atual; }
     public void setAtual(Reserva atual) { this.atual = atual; }
