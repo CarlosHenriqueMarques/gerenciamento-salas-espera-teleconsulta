@@ -7,18 +7,67 @@
     <title>Teleconsulta — Login</title>
 
     <h:outputStylesheet>
-        :root { --card-w: 420px; }
-        body, html { height: 100%; margin: 0; background: linear-gradient(135deg,#f5f7fa 0%, #e6ecff 100%); }
-        .login-wrap { height: 100%; display: grid; place-items: center; padding: 1.5rem; }
-        .brand { text-align: center; margin-bottom: .5rem; color: #334155; }
-        .brand .logo { width: 56px; height: 56px; display: inline-grid; place-items: center; border-radius: 14px; background: #4f46e5; color: white; font-weight: 700; box-shadow: 0 10px 30px rgba(79,70,229,.25); }
-        .brand h2 { margin: .75rem 0 0 0; font-weight: 700; }
-        .sub { text-align:center; color:#64748b; margin: .25rem 0 1rem 0; }
-        .p-input-icon-left, .p-input-icon-right { width: 100%; }
-        .hint { display:block; text-align:center; color:#64748b; margin-top:.5rem; }
-        .p-password input, .p-inputtext { padding: .85rem .95rem !important; font-size: 1rem; }
-        .p-card { width: var(--card-w); }
-        .field-msg { display:block; margin-top:.25rem; }
+        :root { --card-w: 460px; }
+
+        html, body {
+        height: 100%;
+        margin: 0;
+        background: linear-gradient(135deg,#f5f7fa 0%, #e6ecff 100%);
+        font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans";
+        }
+
+        .login-wrap {
+        height: 100%;
+        display: grid;
+        place-items: center;
+        padding: 1.5rem;
+        }
+
+        .brand {
+        text-align: center;
+        margin-bottom: .75rem;
+        color: #334155;
+        }
+
+        .brand .logo {
+        width: 64px;
+        height: 64px;
+        display: inline-grid;
+        place-items: center;
+        border-radius: 16px;
+        background: #4f46e5;
+        color: white;
+        font-weight: 800;
+        font-size: 1.1rem;
+        box-shadow: 0 10px 30px rgba(79,70,229,.25);
+        }
+
+        .brand h2 { margin: .9rem 0 0 0; font-weight: 800; letter-spacing: .2px; }
+        .sub { text-align: center; color: #64748b; margin: .35rem 0 1.15rem 0; font-size: .95rem; }
+
+        .p-card { width: var(--card-w); border-radius: 18px; }
+
+        .p-inputtext,
+        .p-password input {
+        height: 3.2rem !important;
+        padding: 0 1rem !important;
+        font-size: 1rem !important;
+        width: 100%;
+        }
+
+        .p-input-icon-left > i { top: 50%; transform: translateY(-50%); }
+
+        .field-msg { display: block; margin-top: .25rem; }
+
+        #frm\\:btnLogin.p-button {
+        min-width: 11rem;
+        padding: .65rem 1rem;
+        font-weight: 600;
+        }
+
+        .btn-row { display: flex; justify-content: center; margin-top: .5rem; }
+
+        .hint { display: block; text-align: center; color: #64748b; margin-top: .5rem; font-size: .9rem; }
     </h:outputStylesheet>
 </h:head>
 
@@ -36,8 +85,8 @@
 
                 <p:card>
                     <div class="ui-fluid">
-                        <div class="p-field" style="margin-bottom:.75rem">
-                        <span class="p-input-icon-left" style="width:100%">
+                        <div class="p-field" style="margin-bottom:.8rem">
+                    <span class="p-input-icon-left" style="width:100%">
                             <i class="pi pi-user" />
                             <p:inputText id="login"
                                          value="#{authController.login}"
@@ -49,9 +98,9 @@
                             <p:message for="login" id="loginMsg" display="text" styleClass="field-msg"/>
                         </div>
 
-                        <div class="p-field" style="margin-bottom:.75rem">
-                        <span class="p-input-icon-left" style="width:100%">
-                            <i class="pi pi-lock" />
+                        <div class="p-field" style="margin-bottom:.8rem">
+                    <span class="p-input-icon-left" style="width:100%">
+                        <i class="pi pi-lock" />
                             <p:password id="senha"
                                         value="#{authController.senha}"
                                         placeholder="Senha"
