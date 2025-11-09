@@ -1,5 +1,38 @@
 # Teleconsulta – Gerenciamento de Salas de Espera
 
+## Descricao do Desafio
+
+1) Descrição do desafio
+ - Desenvolver um sistema em Java para Gerenciamento de Salas de Espera para Teleconsulta, atendendo às seguintes especificações:
+- Usuário: Deve permitir a busca, cadastro, edição e exclusão de usuários, contendo os campos: nome, e-mail, CPF e período de cadastro;
+- Paciente: Deve permitir a busca, cadastro, edição e exclusão de usuários, contendo os campos: nome, nome social, sexo, nome da mãe, nome do pai, telefone, e-mail, CPF, RG, CNS, data de nascimento e endereço;
+- Unidade de Saúde: Deve permitir a busca, cadastro, edição e exclusão de unidades de saúde, contendo o campo: nome, razão social, sigla, CNPJ e CNES;
+- Sala: Deve permitir a busca, cadastro, edição e exclusão de salas, contendo os campos: nome, capacidade e unidade de saúde ao qual pertence;
+- Reserva: Deve permitir a busca, cadastro, edição e exclusão de reservas, contendo os campos: data/hora de início, data/hora de término, sala e usuário;
+- Criar reserva: Deve possibilitar a reserva de uma sala, validando se não há conflito de horário;
+- Consultar disponibilidade: Deve listar, com base em um filtro de unidade de saúde e período, todas as salas disponíveis;
+- Cancelar reserva: Deve permitir o cancelamento de uma reserva existente.
+ 
+2) Tecnologias obrigatórias
+O projeto deve obrigatoriamente utilizar as seguintes tecnologias:
+- Maven
+- Hibernate (incluindo ao menos uma consulta utilizando Criteria)
+- JSF
+- PrimeFaces
+- Arquitetura MVC
+ 
+3) Execução em container
+O projeto deve estar configurado para execução em container Docker.
+ 
+4) Banco de dados
+- Sugere-se o uso do SQLite como SGBD.
+Caso seja utilizado outro banco de dados, este deverá ser configurado para execução em um container separado.
+ 
+5) Autenticação
+A implementação de autenticação e perfis de usuário é opcional, ficando a critério do desenvolvedor.
+---
+
+
 Sistema web (JSF + PrimeFaces) para gerenciamento de **usuários**, **pacientes**, **unidades de saúde**, **salas** e **reservas de teleconsulta**.  
 Stack: **Jakarta EE 10** no **WildFly 34**, **Hibernate/JPA** e **SQLite**. Empacotado como **WAR** e executado via **Docker**.
 
