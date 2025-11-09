@@ -8,8 +8,10 @@ Stack: **Jakarta EE 10** no **WildFly 34**, **Hibernate/JPA** e **SQLite**. Empa
 - [Tecnologias](#tecnologias)
 - [Estrutura de pastas](#estrutura-de-pastas)
 - [Banco de dados (SQLite) e JPA](#banco-de-dados-sqlite-e-jpa)
-- [Como rodar com Docker](#como-rodar-com-docker)
-- [URLs principais](#urls-principais)
+- [Como rodar com Docker (passo a passo)](#como-rodar-com-docker-passo-a-passo)
+- [Primeiros passos](#primeiros-passos)
+- [URL principal](#url-principal)
+- [Melhorias](#melhorias)
 
 ---
 
@@ -151,6 +153,7 @@ gerenciamento-sala-espera-teleconsulta/
 
 ---
 
+<a id="como-rodar-com-docker-passo-a-passo"></a>
 ## Como rodar com Docker (passo a passo)
 > Pré-requisitos: **Docker**, **Java 17**, **Maven 3.9.11** instalados localmente.
 
@@ -164,12 +167,12 @@ docker run --name teleconsulta -p 8080:8080 -d teleconsulta
 ---
 
 ## Primeiros passos 
-
+<a id="primeiros-passos"></a>
 - Abra: http://localhost:8080/teleconsulta/login.xhtml
 - Credenciais iniciais: admin / admin
 
 ---
-
+<a id="url-principal"></a>
 ## URL principal
 - Login: http://localhost:8080/teleconsulta/login.xhtml
 - Início: http://localhost:8080/teleconsulta/index.xhtml
@@ -180,7 +183,7 @@ docker run --name teleconsulta -p 8080:8080 -d teleconsulta
 - Reservas: http://localhost:8080/teleconsulta/reservas.xhtml
 - Contas (admin): http://localhost:8080/teleconsulta/contas.xhtml
 ---
-
+<a id="melhorias"></a>
 ## Melhorias
 - Autorização por perfil (ex.: ADMIN/USER por tela/ação).
 - Auditoria (quem criou/alterou, quando).
