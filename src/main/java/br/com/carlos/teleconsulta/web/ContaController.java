@@ -17,9 +17,9 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-@Named("contaMB")
+@Named("contaController")
 @ViewScoped
-public class ContaMB implements Serializable {
+public class ContaController implements Serializable {
 
     @Inject
     private ContaService contaService;

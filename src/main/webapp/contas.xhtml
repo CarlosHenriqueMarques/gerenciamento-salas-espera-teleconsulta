@@ -20,7 +20,10 @@
                 <p:spacer width="8" rendered="#{authController.logado}"/>
                 <p:commandButton value="Sair" icon="pi pi-sign-out"
                                  actionListener="#{authController.logout}"
-                                 ajax="false" rendered="#{authController.logado}"/>
+                                 rendered="#{authController.logado}"
+                                 process="@this" update="@none"
+                                 immediate="true" ajax="true"/>
+
             </p:toolbarGroup>
         </p:toolbar>
 
@@ -29,36 +32,36 @@
                 <p:toolbarGroup>
                     <p:commandButton value="Novo" icon="pi pi-plus"
                                      process="@this"
-                                     actionListener="#{contaMB.novo}"
+                                     actionListener="#{contaController.novo}"
                                      update=":frm:dlgConta"
                                      oncomplete="PF('dlgConta').show()"/>
                 </p:toolbarGroup>
 
                 <p:toolbarGroup align="right">
-                    <p:inputText id="termo" value="#{contaMB.termo}" placeholder="Buscar login/observação"
+                    <p:inputText id="termo" value="#{contaController.termo}" placeholder="Buscar login/observação"
                                  style="width:18rem"/>
                     <p:spacer width="6"/>
-                    <p:selectOneMenu id="perfilFiltro" value="#{contaMB.perfilFiltro}" style="width:14rem">
+                    <p:selectOneMenu id="perfilFiltro" value="#{contaController.perfilFiltro}" style="width:14rem">
                         <f:selectItem itemLabel="(todos os perfis)" itemValue="#{null}"/>
-                        <f:selectItems value="#{contaMB.perfis}" var="pf"
+                        <f:selectItems value="#{contaController.perfis}" var="pf"
                                        itemValue="#{pf}" itemLabel="#{pf}"/>
                     </p:selectOneMenu>
                     <p:spacer width="8"/>
                     <p:commandButton value="Filtrar" icon="pi pi-filter"
                                      process="@this termo perfilFiltro"
-                                     actionListener="#{contaMB.filtrar}"
+                                     actionListener="#{contaController.filtrar}"
                                      update=":frm:tblContas :frm:growl"/>
                     <p:spacer width="6"/>
                     <p:commandButton value="Limpar" icon="pi pi-times"
                                      process="@this"
-                                     actionListener="#{contaMB.limparFiltro}"
+                                     actionListener="#{contaController.limparFiltro}"
                                      update=":frm:tblContas :frm:growl :frm:termo :frm:perfilFiltro"
                                      resetValues="true"/>
                 </p:toolbarGroup>
             </p:toolbar>
         </p:panel>
 
-        <p:dataTable id="tblContas" value="#{contaMB.contas}" var="c"
+        <p:dataTable id="tblContas" value="#{contaController.contas}" var="c"
                      paginator="true" rows="10" responsiveLayout="scroll"
                      emptyMessage="Nenhuma conta encontrada.">
             <p:column headerText="ID" style="width:80px;text-align:center" sortBy="#{c.id}">
@@ -76,13 +79,13 @@
             <p:column headerText="Ações" style="width:180px;text-align:center">
                 <p:commandButton icon="pi pi-pencil" title="Editar"
                                  process="@this"
-                                 actionListener="#{contaMB.editar(c)}"
+                                 actionListener="#{contaController.editar(c)}"
                                  update=":frm:dlgConta"
                                  oncomplete="PF('dlgConta').show()"/>
                 <p:spacer width="6"/>
                 <p:commandButton icon="pi pi-trash" title="Excluir"
                                  process="@this"
-                                 actionListener="#{contaMB.excluir(c)}"
+                                 actionListener="#{contaController.excluir(c)}"
                                  update=":frm:tblContas :frm:growl"/>
             </p:column>
         </p:dataTable>
@@ -91,25 +94,25 @@
                   closable="true" resizable="false" width="560" appendTo="@form">
             <p:panelGrid columns="2" columnClasses="col1,col2" layout="grid" styleClass="ui-fluid" style="width:100%">
                 <p:outputLabel for="login" value="Login *"/>
-                <p:inputText id="login" value="#{contaMB.atual.login}" required="true" maxlength="60"/>
+                <p:inputText id="login" value="#{contaController.atual.login}" required="true" maxlength="60"/>
 
                 <p:outputLabel for="perfil" value="Perfil *"/>
-                <p:selectOneMenu id="perfil" value="#{contaMB.atual.perfil}" required="true" style="width:100%">
-                    <f:selectItems value="#{contaMB.perfis}" var="pf" itemValue="#{pf}" itemLabel="#{pf}"/>
+                <p:selectOneMenu id="perfil" value="#{contaController.atual.perfil}" required="true" style="width:100%">
+                    <f:selectItems value="#{contaController.perfis}" var="pf" itemValue="#{pf}" itemLabel="#{pf}"/>
                 </p:selectOneMenu>
 
                 <p:outputLabel for="ativo" value="Ativo"/>
-                <p:selectBooleanCheckbox id="ativo" value="#{contaMB.atual.ativo}"/>
+                <p:selectBooleanCheckbox id="ativo" value="#{contaController.atual.ativo}"/>
 
                 <p:outputLabel for="senhaPlano" value="Senha *"/>
-                <p:password id="senhaPlano" value="#{contaMB.senhaPlano}" feedback="false" maxlength="64"/>
+                <p:password id="senhaPlano" value="#{contaController.senhaPlano}" feedback="false" maxlength="64"/>
             </p:panelGrid>
 
             <p:separator/>
 
             <p:commandButton value="Salvar" icon="pi pi-check"
                              process=":frm:dlgConta"
-                             actionListener="#{contaMB.salvar}"
+                             actionListener="#{contaController.salvar}"
                              update=":frm:tblContas :frm:growl"
                              oncomplete="if (!args.validationFailed) PF('dlgConta').hide();"/>
             <p:spacer width="8"/>
