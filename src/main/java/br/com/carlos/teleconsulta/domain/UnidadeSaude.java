@@ -1,5 +1,6 @@
 package br.com.carlos.teleconsulta.domain;
 
+import br.com.carlos.teleconsulta.validation.CNPJ;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -33,6 +34,7 @@ public class UnidadeSaude implements Serializable {
     private String sigla;
 
     @NotBlank @Size(min = 14, max = 14)
+    @CNPJ
     @Column(nullable = false, length = 14)
     private String cnpj;
 

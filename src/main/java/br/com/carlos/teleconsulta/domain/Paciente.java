@@ -1,6 +1,7 @@
 package br.com.carlos.teleconsulta.domain;
 
 import br.com.carlos.teleconsulta.domain.enums.Sexo;
+import br.com.carlos.teleconsulta.validation.CPF;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
@@ -37,6 +38,7 @@ public class Paciente implements Serializable {
     private String email;
 
     @Pattern(regexp = "\\d{11}", message = "CPF deve conter 11 dígitos")
+    @CPF
     @Column(length = 11)
     private String cpf;
 

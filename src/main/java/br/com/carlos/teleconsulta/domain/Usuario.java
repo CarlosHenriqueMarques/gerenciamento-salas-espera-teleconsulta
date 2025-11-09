@@ -1,5 +1,6 @@
 package br.com.carlos.teleconsulta.domain;
 
+import br.com.carlos.teleconsulta.validation.CPF;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
@@ -25,6 +26,7 @@ public class Usuario implements Serializable {
     private String email;
 
     @NotBlank
+    @CPF
     @Size(min = 11, max = 11)
     @Column(nullable = false, length = 11)
     private String cpf;

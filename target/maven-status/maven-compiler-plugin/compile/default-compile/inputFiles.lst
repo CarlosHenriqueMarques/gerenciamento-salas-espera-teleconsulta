@@ -17,6 +17,11 @@ C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\t
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\service\UnidadeSaudeService.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\service\UsuarioService.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\startup\StartupSeed.java
+C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\util\CpfCnpjUtils.java
+C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\validation\CNPJ.java
+C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\validation\CNPJValidator.java
+C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\validation\CPF.java
+C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\validation\CPFValidator.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\ContaController.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\PacienteController.java
 C:\Project\gerenciamento-salas-espera-teleconsulta\src\main\java\br\com\carlos\teleconsulta\web\ReservaController.java

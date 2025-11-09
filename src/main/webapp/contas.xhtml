@@ -93,10 +93,10 @@
         <p:dialog id="dlgConta" header="Conta" widgetVar="dlgConta" modal="true"
                   closable="true" resizable="false" width="560" appendTo="@form">
             <p:panelGrid columns="2" columnClasses="col1,col2" layout="grid" styleClass="ui-fluid" style="width:100%">
-                <p:outputLabel for="login" value="Login *"/>
+                <p:outputLabel for="login" value="Login"/>
                 <p:inputText id="login" value="#{contaController.atual.login}" required="true" maxlength="60"/>
 
-                <p:outputLabel for="perfil" value="Perfil *"/>
+                <p:outputLabel for="perfil" value="Perfil"/>
                 <p:selectOneMenu id="perfil" value="#{contaController.atual.perfil}" required="true" style="width:100%">
                     <f:selectItems value="#{contaController.perfis}" var="pf" itemValue="#{pf}" itemLabel="#{pf}"/>
                 </p:selectOneMenu>
@@ -104,7 +104,7 @@
                 <p:outputLabel for="ativo" value="Ativo"/>
                 <p:selectBooleanCheckbox id="ativo" value="#{contaController.atual.ativo}"/>
 
-                <p:outputLabel for="senhaPlano" value="Senha *"/>
+                <p:outputLabel for="senhaPlano" value="Senha"/>
                 <p:password id="senhaPlano" value="#{contaController.senhaPlano}" feedback="false" maxlength="64"/>
             </p:panelGrid>
 
