@@ -8,6 +8,7 @@ br\com\carlos\teleconsulta\security\filter\AuthFilter.class
 br\com\carlos\teleconsulta\service\ContaService.class
 br\com\carlos\teleconsulta\service\PasswordService.class
 br\com\carlos\teleconsulta\service\SalaService.class
+br\com\carlos\teleconsulta\web\ContaMB.class
 br\com\carlos\teleconsulta\web\ReservaController.class
 br\com\carlos\teleconsulta\service\UnidadeSaudeService.class
 br\com\carlos\teleconsulta\web\PacienteController.class

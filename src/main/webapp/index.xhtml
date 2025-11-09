@@ -65,6 +65,11 @@
                                           icon="pi pi-calendar-plus"
                                           outcome="/reservas.xhtml"
                                           styleClass="p-button p-button-raised p-button-lg" />
+                            <p:spacer width="8" />
+                            <p:linkButton value="Contas" icon="pi pi-key" outcome="/contas.xhtml"
+                                          styleClass="p-button p-button-raised p-button-lg"
+                                          rendered="#{authController.hasRole('ADMIN')}" />
+
                         </p:toolbarGroup>
                     </p:toolbar>
                 </p:card>
