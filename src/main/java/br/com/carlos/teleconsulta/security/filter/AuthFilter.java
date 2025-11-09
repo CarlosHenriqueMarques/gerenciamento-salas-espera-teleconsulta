@@ -4,28 +4,39 @@ import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-
-@WebFilter("*.xhtml")
+@WebFilter(filterName = "AuthFilter", urlPatterns = {"*.xhtml"})
 public class AuthFilter implements Filter {
 
     @Override
-    public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        HttpServletRequest  request  = (HttpServletRequest) req;
-        HttpServletResponse response = (HttpServletResponse) res;
 
-        String uri = request.getRequestURI();
-        boolean recursoEstatico = uri.contains("/javax.faces.resource/");
-        boolean paginaLogin     = uri.endsWith("/login.xhtml");
+        var req  = (HttpServletRequest) request;
+        var resp = (HttpServletResponse) response;
 
-        Object usuario = request.getSession(false) == null ? null
-                : request.getSession(false).getAttribute("usuarioLogado");
+        String ctx = req.getContextPath();
+        String uri = req.getRequestURI();
 
-        if (usuario != null || paginaLogin || recursoEstatico) {
-            chain.doFilter(req, res);
+        boolean isLoginPage  = uri.endsWith("/login.xhtml");
+        boolean isJsfRes     = uri.contains("/javax.faces.resource/");
+        boolean isPublic     = isLoginPage || isJsfRes;
+
+        HttpSession session = req.getSession(false);
+        boolean logged = (session != null && session.getAttribute("usuarioLogado") != null);
+
+        if (isLoginPage) {
+            resp.setHeader("Cache-Control","no-store, no-cache, must-revalidate, max-age=0");
+            resp.setHeader("Pragma","no-cache");
+            resp.setDateHeader("Expires", 0);
+        }
+
+        if (logged || isPublic) {
+            chain.doFilter(request, response);
         } else {
-            response.sendRedirect(request.getContextPath() + "/login.xhtml");
+            resp.sendRedirect(ctx + "/login.xhtml");
         }
     }
 }
+

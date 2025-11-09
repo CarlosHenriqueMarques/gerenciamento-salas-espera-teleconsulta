@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Teleconsulta — Login</title>
@@ -22,20 +23,20 @@
 </h:head>
 
 <h:body>
-    <div class="login-wrap">
-        <h:form id="frm">
-            <div class="brand">
-                <div class="logo">TC</div>
-                <h2>Teleconsulta</h2>
-                <div class="sub">Acesse sua conta para continuar</div>
-            </div>
+    <f:view transient="true">
+        <div class="login-wrap">
+            <h:form id="frm">
+                <div class="brand">
+                    <div class="logo">TC</div>
+                    <h2>Teleconsulta</h2>
+                    <div class="sub">Acesse sua conta para continuar</div>
+                </div>
 
-            <!-- mensagens globais (topo) -->
-            <p:messages id="msgsLogin" showDetail="true" closable="true" />
+                <p:messages id="msgsLogin" showDetail="true" closable="true" />
 
-            <p:card>
-                <div class="ui-fluid">
-                    <div class="p-field" style="margin-bottom:.75rem">
+                <p:card>
+                    <div class="ui-fluid">
+                        <div class="p-field" style="margin-bottom:.75rem">
                         <span class="p-input-icon-left" style="width:100%">
                             <i class="pi pi-user" />
                             <p:inputText id="login"
@@ -45,10 +46,10 @@
                                          requiredMessage="Informe o login"
                                          autocomplete="username" />
                         </span>
-                        <p:message for="login" id="loginMsg" display="text" styleClass="field-msg"/>
-                    </div>
+                            <p:message for="login" id="loginMsg" display="text" styleClass="field-msg"/>
+                        </div>
 
-                    <div class="p-field" style="margin-bottom:.75rem">
+                        <div class="p-field" style="margin-bottom:.75rem">
                         <span class="p-input-icon-left" style="width:100%">
                             <i class="pi pi-lock" />
                             <p:password id="senha"
@@ -60,24 +61,24 @@
                                         requiredMessage="Informe a senha"
                                         autocomplete="current-password" />
                         </span>
-                        <!-- mensagem por campo -->
-                        <p:message for="senha" id="senhaMsg" display="text" styleClass="field-msg"/>
+                            <p:message for="senha" id="senhaMsg" display="text" styleClass="field-msg"/>
+                        </div>
+
+                        <p:commandButton id="btnLogin"
+                                         value="Entrar"
+                                         icon="pi pi-sign-in"
+                                         process="@form"
+                                         action="#{authController.logar}"
+                                         ajax="false"
+                        style="width:100%" />
+
+                        <small class="hint">Dica: <b>admin</b> / <b>admin</b></small>
                     </div>
+                </p:card>
 
-                    <p:commandButton id="btnLogin"
-                                     value="Entrar"
-                                     icon="pi pi-sign-in"
-                                     process="@form"
-                                     action="#{authController.logar}"
-                                     ajax="true"
-                                     update="msgsLogin loginMsg senhaMsg"
-                                     style="width:100%"/>
-                    <small class="hint">Dica: <b>admin</b> / <b>admin</b></small>
-                </div>
-            </p:card>
-
-            <p:defaultCommand target="btnLogin" />
-        </h:form>
-    </div>
+                <p:defaultCommand target="btnLogin" />
+            </h:form>
+        </div>
+    </f:view>
 </h:body>
 </html>

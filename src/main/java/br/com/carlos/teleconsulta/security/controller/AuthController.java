@@ -35,25 +35,38 @@ public class AuthController implements Serializable {
     public void logar() {
         Conta c = contaService.validarLogin(login, senha, passwordService);
         if (c == null) {
-            FacesMessage msg = new FacesMessage(
-                    FacesMessage.SEVERITY_ERROR,
-                    "Login ou senha inválidos.",
-                    "Verifique suas credenciais."
-            );
-            // amarra a mensagem ao campo de senha (mostra no p:message for="senha")
-            FacesContext.getCurrentInstance().addMessage("frm:senha", msg);
-            FacesContext.getCurrentInstance().validationFailed(); // sinaliza falha pro AJAX
+            FacesContext.getCurrentInstance().addMessage("frm:senha",
+                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+                            "Login ou senha inválidos.", "Verifique suas credenciais."));
             return;
         }
 
-        this.contaLogada = c;
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        ec.getSessionMap().put("usuarioLogado", c);
+        FacesContext fc = FacesContext.getCurrentInstance();
+        ExternalContext ec = fc.getExternalContext();
 
-        // redireciona (com ou sem AJAX)
-        redirect("/index.xhtml");
+        try {
+            var req = (jakarta.servlet.http.HttpServletRequest) ec.getRequest();
+            var resp = (jakarta.servlet.http.HttpServletResponse) ec.getResponse();
+            req.changeSessionId();
+            var session = req.getSession(true);
+            session.setAttribute("usuarioLogado", c);
+        } catch (Exception ignored) {
+            var old = ec.getSession(false);
+            if (old != null) {
+                try { ((jakarta.servlet.http.HttpSession)old).invalidate(); } catch (Exception ignore) {}
+            }
+            ec.getSessionMap().put("usuarioLogado", c);
+        }
+        this.contaLogada = c;
         this.senha = null;
+
+        try {
+            ec.redirect(ec.getRequestContextPath() + "/index.xhtml");
+        } catch (IOException ignored) { }
+        fc.responseComplete();
     }
+
+
 
 
     public void logout() {
@@ -77,10 +90,8 @@ public class AuthController implements Serializable {
         FacesContext fc = FacesContext.getCurrentInstance();
         ExternalContext ec = fc.getExternalContext();
 
-        // Garante caminho com contextPath
         String target = page.startsWith("/") ? ec.getRequestContextPath() + page : ec.getRequestContextPath() + "/" + page;
 
-        // Se for AJAX, usa JS para navegar; senão, redirect normal
         if (fc.getPartialViewContext().isAjaxRequest()) {
             PrimeFaces.current().executeScript("window.location='" + target + "';");
         } else {
@@ -90,7 +101,6 @@ public class AuthController implements Serializable {
         }
     }
 
-    // Getters/Setters
     public String getLogin() { return login; }
     public void setLogin(String login) { this.login = login; }
     public String getSenha() { return senha; }
